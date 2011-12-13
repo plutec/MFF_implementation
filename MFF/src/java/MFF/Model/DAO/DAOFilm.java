@@ -101,5 +101,28 @@ public class DAOFilm {
 	}
 	return null;
     }
+    public ArrayList<Film> getBestRated() {
+	try {
+	    ArrayList<Film> toRet=new ArrayList<Film>();
+	    String sql = "SELECT film_id, AVG(rate) avg FROM ratings GROUP BY film_id ORDER BY avg DESC";
+	    PreparedStatement query = connection.prepareStatement(sql);
+	    ResultSet rs = query.executeQuery();
+	    ResultSetMetaData md = rs.getMetaData();
+	    int columns = md.getColumnCount();
+	    HashMap row = new HashMap();
+	    while (rs.next()) {
+		for(int i=1; i<=columns; i++)
+		    row.put(md.getColumnName(i),rs.getObject(i));
+		Film toInsert=this.getFilm((Integer)row.get("id")); //Creamos la película
+		toInsert.setRatingAverage((Float)row.get("avg")); //Insertamos la media
+		toRet.add(toInsert);
+	    }
+	    //Devolvemos
+	    return toRet;
+	} catch (SQLException ex) {
+	    Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	return null;
+    }
 
 }
