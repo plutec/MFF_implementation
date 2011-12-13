@@ -20,7 +20,6 @@ public class IndexController implements ControllerInterface {
 	if (action.equals("index")) {
 	    return this.index(parameters);
 	}
-	//...
 	return new HashMap<String, Object>();
 
 	
