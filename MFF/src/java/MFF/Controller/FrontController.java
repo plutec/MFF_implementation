@@ -1,12 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package MFF.Controller;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Iterator;
 import javax.servlet.RequestDispatcher;
@@ -17,7 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author antonio
+ * @author Antonio Sánchez Perea
+ * @date 13-dic-2011
  */
 public class FrontController extends HttpServlet {
    
@@ -32,51 +28,46 @@ public class FrontController extends HttpServlet {
     throws ServletException, IOException {
         //response.setContentType("text/html;charset=UTF-8");
         //PrintWriter out = response.getWriter();
-        try {
-	    //Extraemos el nombre del controlador
-	    String controllerS=request.getParameter("c");
-	    if (controllerS==null || controllerS.equals("")) { controllerS="Index"; }
-	    //Y el nombre de la acción
-	    String action=request.getParameter("a");
-	    if (action==null || action.equals("")) { action="index"; }
-	    //Creamos el controlador
-	    ControllerInterface controllerO = null;
-	    if (controllerS.equals("Index")) { controllerO=(IndexController)new IndexController(); }
+	//Extraemos el nombre del controlador
+	String controllerS=request.getParameter("c");
+	if (controllerS==null || controllerS.equals("")) { controllerS="Index"; }
+	//Y el nombre de la acción
+	String action=request.getParameter("a");
+	if (action==null || action.equals("")) { action="index"; }
+	//Creamos el controlador
+	ControllerInterface controllerO = null;
+	if (controllerS.equals("Index")) {
+	    controllerO=new IndexController();
+	} else if(controllerS.equals("Film")) {
+	    controllerO = new FilmController();
+	} else if(controllerS.equals("Rating")) {
+	    controllerO = new RatingController();
+	} else if(controllerS.equals("User")) {
+	    controllerO = new UserController();
+	} else if(controllerS.equals("Similarity")) {
+	    controllerO = new SimilarityController();
+	}
 
+	//Llamamos al método call con el nombre de la acción
+	HashMap<String, Object> returned;
+	returned=controllerO.call(action, null);
 
-	    //Ahora las acciones
-	    //if (action.equals("index")) { controllerO.index(); }
-	    HashMap<String, Object> returned;
-	    returned=controllerO.call(action, null);
-	    String address;
-	    if (returned.containsKey("address")) {
-		address=(String) returned.remove("address");
-	    } else {
-		address="error.jsp";
-	    }
+	//Mandamos a la vista que nos diga el controlador
+	String address;
+	if (returned.containsKey("address")) {
+	    address=(String) returned.remove("address");
+	} else {
+	    address="error.jsp";
+	}
 
-	    Iterator itr=returned.keySet().iterator();
-	    while(itr.hasNext()) {
-		String key=(String) itr.next();
-		request.setAttribute(key, returned.get(key));
-	    }
-	    RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-	    dispatcher.forward(request, response);
-    //TODO output your page here
-    /*out.println("<html>");
-    out.println("<head>");
-    out.println("<title>Servlet FrontController</title>");
-    out.println("</head>");
-    out.println("<body>");
-    out.println("<h1>Servlet FrontController at " + request.getContextPath () + "</h1>");
-    out.println("</body>");
-    out.println("</html>");*/
-    //Cargamos el nombre del controlador
-
-            
-        } finally { 
-            //out.close();
-        }
+	Iterator itr=returned.keySet().iterator();
+	while(itr.hasNext()) {
+	    String key=(String) itr.next();
+	    request.setAttribute(key, returned.get(key));
+	}
+	RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+	dispatcher.forward(request, response);
+	//FIN!
     } 
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

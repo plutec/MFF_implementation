@@ -1,9 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package MFF.Model.DAO;
+
+import java.sql.Connection;
 
 /**
  *
@@ -11,5 +9,10 @@ package MFF.Model.DAO;
  * @date 13-dic-2011
  */
 public class DAORating {
-
+    private Connection connection;
+    
+    public DAORating() {
+	connection = DBConnection.getConnection();
+    }
+    
 }

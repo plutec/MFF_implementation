@@ -1,9 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package MFF.Model;
+
+import java.util.Date;
 
 /**
  *
@@ -11,5 +9,16 @@ package MFF.Model;
  * @date 13-dic-2011
  */
 public class Rating {
-
+    int rate;
+    Date date;
+    public Rating (int rate, Date date) {
+	this.rate=rate;
+	this.date=date;
+    }
+    public int getRate() {
+	return rate;
+    }
+    public Date getDate() {
+	return date;
+    }
 }
