@@ -14,6 +14,7 @@ public class RSManagement {
 	
     }
     public ArrayList<Film> getBestRatedFilms(int n) {
-	return new DAOFilm().getBestRated(n);
+	DAOFilm dF=new DAOFilm();
+	return dF.getBestRated(n);
     }
 }

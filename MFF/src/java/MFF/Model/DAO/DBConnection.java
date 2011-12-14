@@ -24,9 +24,10 @@ public class DBConnection {
 	}
 
 	static public Connection getConnection() {
-
-		return connection;
-
+	    if (connection==null) {
+		createConnection();
+	    }
+	    return connection;
 	}
 
 	static public void closeConnection() {
