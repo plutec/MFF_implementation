@@ -1,0 +1,91 @@
+body {
+	font-family: 'Open Sans', sans-serif;
+	margin: 0 auto;
+	padding: 0;
+}
+
+header {
+	height: 125px;
+	margin: 0 auto;
+	padding: 0 20px;
+	width: 960px;
+}
+
+#loginBox {
+	background: #660066;
+	float: right;
+	font-size: .8em;
+	padding: 5px 10px;
+}
+
+#loginBox a {
+	color: #fff;
+}
+
+#searchBox {
+	clear: both;
+	float: right;
+	margin-top: 20px;
+}
+
+#searchBox input.search {
+	
+}
+
+#searchBox input.submit {
+	
+}
+
+#presentationWrapper {
+	background: #660066;
+	height: 250px;
+}
+
+#presentation {
+	background: url('../images/popcorns.png') no-repeat right;
+	background-position: 95%;
+	background-size: 190px;
+	font-family: 'Viga', sans-serif;
+	height: 250px;
+	margin: 0 auto;
+	width: 960px;
+}
+
+#presentation #sentence {
+	color: #DDDDDD;
+	font-size: 1.2em;
+	padding-top: 30px;
+	line-height: 1.4em;
+	width: 75%;
+}
+
+#content {
+	margin: 0 auto;
+	width: 960px;
+}
+
+#content h1 {
+	font-size: 1.4em;
+	font-weight: bold;
+	padding: 40px 20px;
+}
+
+#content.error {
+	padding: 100px;
+	text-align: center;
+	text-transform: uppercase;
+}
+
+footer {
+	margin: 0 auto;
+	padding: 20px;
+	width: 960px;
+}
+
+footer .credits,
+footer .authors {
+	display: block;
+	font-size: .8em;
+	margin-bottom: 10px;
+	text-align: center;
+}
