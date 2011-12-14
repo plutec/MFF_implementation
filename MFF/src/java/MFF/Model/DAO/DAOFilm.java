@@ -2,6 +2,7 @@
 package MFF.Model.DAO;
 
 import MFF.Model.Film;
+import java.math.BigDecimal;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,6 +22,7 @@ public class DAOFilm {
     private Connection connection;
     
     public DAOFilm() {
+	DBConnection.createConnection();
 	connection = DBConnection.getConnection();
     }
     public ArrayList<Film> search(String s) {
@@ -114,8 +116,8 @@ public class DAOFilm {
 	    while (rs.next()) {
 		for(int i=1; i<=columns; i++)
 		    row.put(md.getColumnName(i),rs.getObject(i));
-		Film toInsert=this.getFilm((Integer)row.get("id")); //Creamos la película
-		toInsert.setRatingAverage((Float)row.get("avg")); //Insertamos la media
+		Film toInsert=this.getFilm((Integer)row.get("film_id")); //Creamos la película
+		toInsert.setRatingAverage(((BigDecimal)row.get("avg")).floatValue()); //Insertamos la media
 		toRet.add(toInsert);
 	    }
 	    //Devolvemos
@@ -123,7 +125,7 @@ public class DAOFilm {
 	} catch (SQLException ex) {
 	    Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 	}
-	return null;
+	return new ArrayList<Film>();//debe devolver null
     }
 
 }
