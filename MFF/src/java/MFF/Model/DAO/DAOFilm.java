@@ -22,7 +22,6 @@ public class DAOFilm {
     private Connection connection;
     
     public DAOFilm() {
-	DBConnection.createConnection();
 	connection = DBConnection.getConnection();
     }
     public ArrayList<Film> search(String s) {
