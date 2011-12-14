@@ -6,6 +6,8 @@
 package MFF.Controller;
 
 import MFF.Model.Film;
+import MFF.Model.RSManagement;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -14,7 +16,10 @@ import java.util.HashMap;
  * @date 13-dic-2011
  */
 public class IndexController implements ControllerInterface {
-
+    RSManagement model;
+    public IndexController() {
+	model=new RSManagement();
+    }
     @Override
     public HashMap<String, Object> call(String action, HashMap<String, Object> parameters) {
 	if (action.equals("index")) {
@@ -27,12 +32,12 @@ public class IndexController implements ControllerInterface {
     protected HashMap<String, Object> index(HashMap<String, Object> parameters) {
 	HashMap<String, Object> toRet=new HashMap<String, Object>();
 	toRet.put("address", "index.jsp");
-	Film film=new Film(5,"Más adentro", 2003);
-	toRet.put("prueba", film);
-	//Llamamos al modelo
-	//...
-
-	//Ahora llamamos a la vista
+	int max=10; //Máximo de películas a devolver
+	ArrayList<Film> films=model.getBestRatedFilms(max);
+	toRet.put("films", films);
+	//Indicamos la vista
+	toRet.put("address", "index.jsp");
 	return toRet;
+
     }
 }

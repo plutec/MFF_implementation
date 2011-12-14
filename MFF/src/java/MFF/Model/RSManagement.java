@@ -1,6 +1,7 @@
 
 package MFF.Model;
 
+import MFF.Model.DAO.DAOFilm;
 import java.util.ArrayList;
 
 /**
@@ -13,6 +14,6 @@ public class RSManagement {
 	
     }
     public ArrayList<Film> getBestRatedFilms(int n) {
-	return null;
+	return new DAOFilm().getBestRated(n);
     }
 }

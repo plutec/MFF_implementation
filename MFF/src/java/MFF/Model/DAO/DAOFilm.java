@@ -101,11 +101,12 @@ public class DAOFilm {
 	}
 	return null;
     }
-    public ArrayList<Film> getBestRated() {
+    public ArrayList<Film> getBestRated(int n) {
 	try {
 	    ArrayList<Film> toRet=new ArrayList<Film>();
-	    String sql = "SELECT film_id, AVG(rate) avg FROM ratings GROUP BY film_id ORDER BY avg DESC";
+	    String sql = "SELECT film_id, AVG(rate) avg FROM ratings GROUP BY film_id ORDER BY avg DESC LIMIT 0,?";
 	    PreparedStatement query = connection.prepareStatement(sql);
+	    query.setInt(1, n);
 	    ResultSet rs = query.executeQuery();
 	    ResultSetMetaData md = rs.getMetaData();
 	    int columns = md.getColumnCount();
