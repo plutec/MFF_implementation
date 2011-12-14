@@ -7,6 +7,7 @@
 	<script type="text/javascript" src="js/mff.js"></script>
 	<link href='http://fonts.googleapis.com/css?family=Viga' rel='stylesheet' type='text/css'>
 	<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Marvel:400,700' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	<header>

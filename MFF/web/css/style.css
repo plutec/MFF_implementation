@@ -38,6 +38,7 @@ header {
 
 #presentationWrapper {
 	background: #660066;
+	box-shadow: 0 2px 2px #333333;
 	height: 250px;
 }
 
@@ -45,7 +46,7 @@ header {
 	background: url('../images/popcorns.png') no-repeat right;
 	background-position: 95%;
 	background-size: 190px;
-	font-family: 'Viga', sans-serif;
+	font-family: 'Marvel', sans-serif;
 	height: 250px;
 	margin: 0 auto;
 	width: 960px;
@@ -54,9 +55,10 @@ header {
 #presentation #sentence {
 	color: #DDDDDD;
 	font-size: 1.2em;
+	font-weight: bold;
 	padding-top: 30px;
 	line-height: 1.4em;
-	width: 75%;
+	width: 60%;
 }
 
 #content {
@@ -77,13 +79,27 @@ header {
 }
 
 #content .mostRatedFilms .film {
-	background: bisque;
+	background: #333333;
+	background-size: 100%;
+	box-shadow: 2px 2px 2px #333333;
 	height: 225px;
 	float: left;
 	margin: 5px;
 	padding: 10px;
-	text-align: center;
+	position: relative;
 	width: 162px;
+}
+
+#content .mostRatedFilms .metadata {
+	background: rgba(0, 0, 0, 0.8);
+	bottom: 0;
+	color: #FFF;
+	margin-left: -10px;
+	padding: 5px;
+	position: absolute;
+	text-align: center;
+	font-size: 0.8em;
+	width: 172px;
 }
 
 #content.error {
@@ -101,7 +117,7 @@ footer {
 footer .credits,
 footer .authors {
 	display: block;
-	font-size: .8em;
+	font-size: .7em;
 	margin-bottom: 10px;
 	text-align: center;
 }

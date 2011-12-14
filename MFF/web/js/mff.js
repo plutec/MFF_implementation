@@ -4,8 +4,14 @@ $(document).ready(function() {
 	$('.filmposter').each(function() {
 		var title = $(this).data("title");
 		var year = $(this).data("year");
-		$.get("http://www.imdbapi.com/?t=" + title + "&y=" + year, function(data) {
-			alert(data);
+		var aObj = $(this);
+		$.ajax({
+			dataType: "jsonp",
+			data: "",
+			url: "http://www.imdbapi.com/?t=" + title + "&y=" + year,
+			success: function(json){
+				$(aObj).css('background-image', "url(" + json.Poster + ")");
+			}
 		});
 	});
 	
