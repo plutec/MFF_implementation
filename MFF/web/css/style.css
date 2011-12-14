@@ -1,4 +1,5 @@
 body {
+	border-top: 5px solid #660066;
 	font-family: 'Open Sans', sans-serif;
 	margin: 0 auto;
 	padding: 0;
@@ -15,25 +16,64 @@ header {
 	background: #660066;
 	float: right;
 	font-size: .8em;
-	padding: 5px 10px;
+	padding: 5px 10px 8px 10px;
 }
 
 #loginBox a {
 	color: #fff;
+	font-weight: bold;
+	font-size: .9em;
 }
 
 #searchBox {
 	clear: both;
 	float: right;
-	margin-top: 20px;
+	margin-top: 50px;
 }
 
 #searchBox input.search {
-	
+	-moz-box-shadow:inset 0px 1px 0px 0px #660066;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #660066;
+	box-shadow:inset 0px 1px 0px 0px #660066;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #660066;
+	font-family:arial;
+	padding: 4px;
+}
+
+#searchBox select {
 }
 
 #searchBox input.submit {
-	
+	-moz-box-shadow:inset 0px 1px 0px 0px #e184f3;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #e184f3;
+	box-shadow:inset 0px 1px 0px 0px #e184f3;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cc66ff), color-stop(1, #660066) );
+	background:-moz-linear-gradient( center top, #cc66ff 5%, #660066 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc66ff', endColorstr='#660066');
+	background-color:#cc66ff;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #660066;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 24px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #660066;
+}#searchBox input.submit:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #660066), color-stop(1, #cc66ff) );
+	background:-moz-linear-gradient( center top, #660066 5%, #cc66ff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#660066', endColorstr='#cc66ff');
+	background-color:#660066;
+}#searchBox input.submit:active {
+	position:relative;
+	top:1px;
 }
 
 #presentationWrapper {
@@ -69,9 +109,11 @@ header {
 }
 
 #content h1 {
+	color: #330033;
 	font-size: 1.4em;
 	font-weight: bold;
 	padding: 40px 0;
+	text-shadow: 1px 1px 2px #333333;
 }
 
 #content .mostRatedFilms {
@@ -81,6 +123,9 @@ header {
 #content .mostRatedFilms .film {
 	background: #333333;
 	background-size: 100%;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
 	box-shadow: 2px 2px 2px #333333;
 	height: 225px;
 	float: left;
@@ -92,6 +137,12 @@ header {
 
 #content .mostRatedFilms .metadata {
 	background: rgba(0, 0, 0, 0.8);
+	-webkit-border-bottom-right-radius: 5px;
+	-webkit-border-bottom-left-radius: 5px;
+	-moz-border-radius-bottomright: 5px;
+	-moz-border-radius-bottomleft: 5px;
+	border-bottom-right-radius: 5px;
+	border-bottom-left-radius: 5px;
 	bottom: 0;
 	color: #FFF;
 	margin-left: -10px;
