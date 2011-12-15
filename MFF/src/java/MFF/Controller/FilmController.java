@@ -32,16 +32,13 @@ public class FilmController implements ControllerInterface{
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
 		String search;
 		DAOFilm dF;
-		if (parameters.containsKey("search")) { //Si se está realizando una búsqueda, hacemos las cosas oportunas (al modelo)
+		if (parameters.containsKey("search") && (!parameters.get("search").equals(""))) { //Si se está realizando una búsqueda, hacemos las cosas oportunas (al modelo)
 			search=(String) parameters.get("search");
 			dF=new DAOFilm();
 			toRet.put("films", dF.search(search));
-			toRet.put("title", "MFF :: Resultados búsqueda");
-			toRet.put("address", "View_FilmsSearchResults.jsp");
-		} else { //Sólo mostramos la vista para buscar
-			toRet.put("title", "MFF :: Búsqueda de películas");
-			toRet.put("address", "searchFilm.jsp"); //TODO: Debe ir a la portada
 		}
+		toRet.put("title", "MFF :: Resultados búsqueda");
+		toRet.put("address", "View_FilmsSearchResults.jsp");
 		return toRet;
 	}
 	protected HashMap<String, Object> add(HashMap<String, Object> parameters) {
