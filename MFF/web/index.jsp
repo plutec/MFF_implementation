@@ -16,7 +16,7 @@
 			for (int i=0; i<filmsList.size(); i++) {
 				String title = ((Film)filmsList.get(i)).getTitle();
 				int year = ((Film)filmsList.get(i)).getYear();
-				float rating = (float) 1.5;
+				float rating = ((Film)filmsList.get(i)).getRatingAverage();
 				out.println("<div class=\"film filmposter\"data-title=\"" + title.split(":")[0] + "\" data-year=\"" + year + "\">");
 				out.println("<div class=\"metadata\">" + title + " (" + year + ")"
 						+ "<div class=\"stars_grey\"><div class=\"stars_yellow\" style=\"width:" + rating*100/5 + "%\">"
