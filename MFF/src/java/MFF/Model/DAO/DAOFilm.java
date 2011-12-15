@@ -105,7 +105,8 @@ public class DAOFilm {
 	public ArrayList<Film> getBestRated(int n) {
 		try {
 			ArrayList<Film> toRet=new ArrayList<Film>();
-			String sql = "SELECT film_id, AVG(rate) avg FROM ratings GROUP BY film_id ORDER BY avg DESC LIMIT 0,?";
+			//String sql = "SELECT film_id, AVG(rate) avg FROM ratings GROUP BY film_id ORDER BY avg DESC LIMIT 0,?";
+			String sql = "SELECT film_id, avg(rate) as avgrate, COUNT(film_id) as nrates FROM ratings GROUP BY film_id HAVING(nrates>50) ORDER BY avgrate DESC LIMIT 0,?";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setInt(1, n);
 			ResultSet rs = query.executeQuery();
