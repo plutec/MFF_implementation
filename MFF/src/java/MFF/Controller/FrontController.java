@@ -29,6 +29,7 @@ public class FrontController extends HttpServlet {
 		//response.setContentType("text/html;charset=UTF-8");
 		//PrintWriter out = response.getWriter();
 		//Extraemos el nombre del controlador
+		HashMap<String, Object> parameters = new HashMap<String, Object>();
 		String controllerS=request.getParameter("c");
 		if (controllerS==null || controllerS.equals("")) { controllerS="Index"; }
 		//Y el nombre de la acción
@@ -40,24 +41,30 @@ public class FrontController extends HttpServlet {
 			controllerO=new IndexController();
 		} else if(controllerS.equals("Film")) {
 			controllerO = new FilmController();
+			String searchString = request.getParameter("search");
+			parameters.put("search", searchString);
 		} else if(controllerS.equals("Rating")) {
 			controllerO = new RatingController();
 		} else if(controllerS.equals("User")) {
 			controllerO = new UserController();
 		} else if(controllerS.equals("Similarity")) {
 			controllerO = new SimilarityController();
+		} else {
+			String address="View_Error.jsp";
+			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+			dispatcher.forward(request, response);
 		}
 		
 		//Llamamos al método call con el nombre de la acción
 		HashMap<String, Object> returned;
-		returned=controllerO.call(action, null);
+		returned=controllerO.call(action, parameters);
 		
 		//Mandamos a la vista que nos diga el controlador
 		String address;
 		if (returned.containsKey("address")) {
 			address=(String) returned.remove("address");
 		} else {
-			address="error.jsp";
+			address="View_Error.jsp";
 		}
 		
 		Iterator itr=returned.keySet().iterator();

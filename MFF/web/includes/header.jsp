@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-	<title>My Favourite Films</title>
+	<title><%= request.getAttribute("title") %></title>
 	<link rel="stylesheet" href="css/reset.css" />
 	<link rel="stylesheet" href="css/style.css" />
 	<script type="text/javascript" src="js/jquery.js"></script>
@@ -21,12 +21,13 @@
 			%>
 		</div>
 		<div id="searchBox">
-			<form action="" method="get">
-				<select name="selCombo" size="1">
-					<option value="Películas">Películas</option>
-					<option value="Usuarios">Usuarios</option>
+			<form action="index" method="get">
+				<select name="c" size="1">
+					<option value="Film">Películas</option>
+					<option value="User">Usuarios</option>
 				</select>
-				<input type="text" class="search" />
+				<input type="hidden" name="a" value="search" />
+				<input type="text" name="search" class="search" />
 				<input type="submit" value="Buscar" class="submit" />
 			</form>
 		</div>

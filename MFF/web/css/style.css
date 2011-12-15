@@ -118,11 +118,11 @@ header {
 	text-shadow: 1px 1px 2px #aaa;
 }
 
-#content .mostRatedFilms {
+#content {
 	margin: 0 auto;
 }
 
-#content .mostRatedFilms .film {
+#content .film {
 	background: #333333;
 	background-size: 100%;
 	-webkit-border-radius: 5px;
@@ -137,7 +137,7 @@ header {
 	width: 162px;
 }
 
-#content .mostRatedFilms .metadata {
+#content .film .metadata {
 	background: rgba(0, 0, 0, 0.8);
 	-webkit-border-bottom-right-radius: 5px;
 	-webkit-border-bottom-left-radius: 5px;
@@ -156,14 +156,14 @@ header {
 	width: 172px;
 }
 
-#content .mostRatedFilms .metadata .stars_yellow {
+#content .film .metadata .stars_yellow {
 	background-image: url('../images/stars.png');
 	background-position: top left;
 	height: 24px;
 	width: 136px;
 }
 
-#content .mostRatedFilms .metadata .stars_grey {
+#content .film .metadata .stars_grey {
 	background-image: url('../images/stars.png');
 	background-position: bottom left;
 	height: 24px;
