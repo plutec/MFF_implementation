@@ -27,10 +27,10 @@ public class DAOFilm {
 	public ArrayList<Film> search(String s) {
 		try {
 			ArrayList<Film> toRet=new ArrayList<Film>();
-			String sql = "SELECT id, year, title FROM film WHERE (title LIKE ?) OR (year=?)";
+			String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND ((title LIKE ?) OR (year=?)) GROUP BY id";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setString(1, "%" + s + "%");
-			try { query.setInt(2, Integer.parseInt(s)); } catch (Exception e) {}
+			try { query.setInt(2, Integer.parseInt(s)); } catch (Exception e) { query.setInt(2, 0); }
 			ResultSet rs = query.executeQuery();
 			ResultSetMetaData md = rs.getMetaData();
 			int columns = md.getColumnCount();
@@ -38,7 +38,7 @@ public class DAOFilm {
 			while (rs.next()) {
 				for(int i=1; i<=columns; i++)
 					row.put(md.getColumnName(i),rs.getObject(i));
-				toRet.add(new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year")));
+				toRet.add(new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), ((BigDecimal)row.get("avgrate")).floatValue()));
 			}
 			//Devolvemos
 			return toRet;
@@ -83,7 +83,7 @@ public class DAOFilm {
 	}
 	public Film getFilm(int id) {
 		try {
-			String sql = "SELECT id, year, title FROM film WHERE id=?";
+			String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND id=?";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setInt(1, id);
 			ResultSet rs = query.executeQuery();
@@ -96,7 +96,7 @@ public class DAOFilm {
 					row.put(md.getColumnName(i),rs.getObject(i));
 			}
 			//Creamos el objeto película para devolverlo
-			return new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"));
+			return new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), ((BigDecimal)row.get("avgrate")).floatValue());
 		} catch (SQLException ex) {
 			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -116,7 +116,7 @@ public class DAOFilm {
 				for(int i=1; i<=columns; i++)
 					row.put(md.getColumnName(i),rs.getObject(i));
 				Film toInsert=this.getFilm((Integer)row.get("film_id")); //Creamos la película
-				toInsert.setRatingAverage(((BigDecimal)row.get("avg")).floatValue()); //Insertamos la media
+				//toInsert.setRatingAverage(((BigDecimal)row.get("avg")).floatValue()); //Insertamos la media
 				toRet.add(toInsert);
 			}
 			//Devolvemos

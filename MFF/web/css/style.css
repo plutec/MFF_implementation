@@ -157,18 +157,18 @@ header {
 }
 
 #content .film .metadata .stars_yellow {
-	background-image: url('../images/stars.png');
+	background-image: url('../images/sprite_stars.png');
 	background-position: top left;
 	height: 24px;
-	width: 136px;
+	width: 120px;
 }
 
 #content .film .metadata .stars_grey {
-	background-image: url('../images/stars.png');
+	background-image: url('../images/sprite_stars.png');
 	background-position: bottom left;
 	height: 24px;
 	margin: 10px auto;
-	width: 136px;
+	width: 120px;
 }
 
 #content.error {
