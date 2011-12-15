@@ -42,4 +42,7 @@ public class Film {
 	public int getYear() {
 		return year;
 	}
+	public float getRatingAverage() {
+		return ratingAverage;
+	}
 }
