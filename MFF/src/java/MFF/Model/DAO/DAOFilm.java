@@ -27,7 +27,8 @@ public class DAOFilm {
 	public ArrayList<Film> search(String s) {
 		try {
 			ArrayList<Film> toRet=new ArrayList<Film>();
-			String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND ((title LIKE ?) OR (year=?)) GROUP BY id";
+			//String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND ((title LIKE ?) OR (year=?)) GROUP BY id";
+			String sql = "SELECT id id1, title, year, (SELECT AVG(rate) FROM ratings,film WHERE ratings.film_id=film.id AND film.id=id1) avgrate FROM film WHERE ((title LIKE ?) OR (year = ?))";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setString(1, "%" + s + "%");
 			try { query.setInt(2, Integer.parseInt(s)); } catch (Exception e) { query.setInt(2, 0); }
@@ -38,7 +39,13 @@ public class DAOFilm {
 			while (rs.next()) {
 				for(int i=1; i<=columns; i++)
 					row.put(md.getColumnName(i),rs.getObject(i));
-				toRet.add(new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), ((BigDecimal)row.get("avgrate")).floatValue()));
+				float avgrate;
+				if (row.get("avgrate") == null)
+					avgrate = 0;
+				else
+					avgrate = ((BigDecimal)row.get("avgrate")).floatValue();
+				System.out.println((Integer)row.get("id1"));
+				toRet.add(new Film((Integer)row.get("id1"), (String)row.get("title"), (Integer)row.get("year"), avgrate));
 			}
 			//Devolvemos
 			return toRet;
