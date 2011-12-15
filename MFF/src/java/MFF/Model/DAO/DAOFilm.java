@@ -27,10 +27,10 @@ public class DAOFilm {
 	public ArrayList<Film> search(String s) {
 		try {
 			ArrayList<Film> toRet=new ArrayList<Film>();
-			String sql = "SELECT id, year, title FROM film WHERE title LIKE ?";
+			String sql = "SELECT id, year, title FROM film WHERE (title LIKE ?) OR (year LIKE ?)";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setString(1, "%" + s + "%");
-			//try { query.setInt(2, Integer.parseInt(s)); } catch (Exception e) {}
+			try { query.setInt(2, Integer.parseInt(s)); } catch (Exception e) {}
 			ResultSet rs = query.executeQuery();
 			ResultSetMetaData md = rs.getMetaData();
 			int columns = md.getColumnCount();
