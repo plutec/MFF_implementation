@@ -53,9 +53,10 @@ public class DAORating {
     }
     public Rating get(User u, Film f) {
 	try {
-	    String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND id=?";
+	    String sql = "SELECT rate, rate_date FROM ratings WHERE user_id='?' AND film_id=?";
 	    PreparedStatement query = connection.prepareStatement(sql);
-	    //query.setInt(1, id);
+	    query.setString(1, u.getId());
+	    query.setInt(2, f.getId());
 	    ResultSet rs = query.executeQuery();
 	    ResultSetMetaData md = rs.getMetaData();
 	    int columns = md.getColumnCount();
@@ -64,8 +65,8 @@ public class DAORating {
 		for(int i=1; i<=columns; i++)
 		    row.put(md.getColumnName(i),rs.getObject(i));
 	    }
-	    //Creamos el objeto película para devolverlo
-	    //return new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), ((BigDecimal)row.get("avgrate")).floatValue());
+	    //Creamos el objeto rating para devolverlo
+	    return new Rating((Integer)row.get("rate"), (Date)row.get("rate_date"));
 	} catch (SQLException ex) {
 		Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 	}

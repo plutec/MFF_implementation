@@ -11,19 +11,14 @@ import java.util.Date;
 public class Rating {
     int rate;
     Date date;
-    User user;
-    public Rating (int rate, Date date, User u) {
+    public Rating (int rate, Date date) {
 	this.rate=rate;
 	this.date=date;
-	this.user=u;
     }
     public int getRate() {
 	return rate;
     }
     public Date getDate() {
 	return date;
-    }
-    public User getUser() {
-	return user;
     }
 }

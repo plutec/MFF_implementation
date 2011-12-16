@@ -5,6 +5,9 @@
 
 package MFF.Model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  *
  * @author Antonio Sánchez Perea
@@ -14,10 +17,19 @@ public class User {
     String id;
     String password;
     Boolean isAdmin;
+    ArrayList<Rating> ratings;
+
     public User(String id, String pass, Boolean isAdmin) {
 	this.id=id;
 	this.password=pass;
 	this.isAdmin=isAdmin;
+	this.ratings=new ArrayList<Rating>();
+    }
+    public User(String id, String pass, Boolean isAdmin, ArrayList<Rating> ratings) {
+	this.id=id;
+	this.password=pass;
+	this.isAdmin=isAdmin;
+	this.ratings=ratings;
     }
     public String getId() {
 	return id;
@@ -27,5 +39,8 @@ public class User {
     }
     public Boolean getIsAdmin() {
 	return isAdmin;
+    }
+    public void insertRating(Rating r) {
+	ratings.add(r);
     }
 }
