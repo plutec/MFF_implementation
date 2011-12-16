@@ -17,4 +17,13 @@ public class RSManagement {
 	DAOFilm dF=new DAOFilm();
 	return dF.getBestRated(n);
     }
+    public Film searchFilmById(int id) {
+	DAOFilm dF=new DAOFilm();
+	return dF.getFilm(id);
+    }
+    public ArrayList<Film> searchFilm(String s) {
+	DAOFilm dF=new DAOFilm();
+	return dF.search(s);
+    }
+
 }
