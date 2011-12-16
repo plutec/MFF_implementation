@@ -54,17 +54,30 @@ public class DAOFilm {
 		return null;
 	}
 	public void insert(Film f) {
-		try {
-			String sql = "INSERT INTO film(id, title, year) VALUES(?, '?', ?)";
-			PreparedStatement query = connection.prepareStatement(sql);
-			query.setInt(1, f.getId());
-			query.setString(2, f.getTitle());
-			query.setInt(3, f.getYear());
-			query.executeQuery();
-		} catch (SQLException ex) {
-			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
-		}
-	}
+	    int max_id = -1;
+	    try {
+		String sql = "SELECT MAX(id)+1 max FROM film";
+	        PreparedStatement query = connection.prepareStatement(sql);
+		//query.setString(1, "%" + s + "%");
+		//try { query.setInt(2, Integer.parseInt(s)); } catch (Exception e) { query.setInt(2, 0); }
+		ResultSet rs = query.executeQuery();
+		ResultSetMetaData md = rs.getMetaData();
+		rs.next();
+		max_id=(Integer) rs.getObject(1);
+	    } catch(Exception e) {  }
+	    
+	    try {
+		String sql = "INSERT INTO film(id, title, year) VALUES(?, '?', ?)";
+		PreparedStatement query = connection.prepareStatement(sql);
+		query.setInt(1, max_id);
+		query.setString(2, f.getTitle());
+		query.setInt(3, f.getYear());
+		query.executeQuery();
+	    } catch (SQLException ex) {
+		    Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	    }
+	    f.setId(max_id);
+    }
 	public void update(Film f) {
 		try {
 			String sql = "UPDATE film SET title = ?, year = ? WHERE id=?";

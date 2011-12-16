@@ -46,4 +46,8 @@ public class RSManagement {
 	DAOUser dU=new DAOUser();
 	return dU.getAnUser(id);
     }
+    public void addFilm(Film f) {
+	DAOFilm dF=new DAOFilm();
+	dF.insert(f);
+    }
 }
