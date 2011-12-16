@@ -5,6 +5,7 @@
 
 package MFF.Model.DAO;
 
+import MFF.Exceptions.*;
 import MFF.Model.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -28,7 +29,7 @@ public class DAOUser {
     public DAOUser() {
     	connection = DBConnection.getConnection();
     }
-    public void insert(User u) {
+    public void insert(User u) throws DuplicateUser {
 	try {
 	    String sql = "INSERT INTO users(id, pass, admin) VALUES('?', '?', ?)";
 	    PreparedStatement query = connection.prepareStatement(sql);
@@ -39,7 +40,8 @@ public class DAOUser {
 	    query.setInt(3, isAdmin);
 	    query.executeQuery();
 	} catch (SQLException ex) {
-		Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+		Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
+		throw new DuplicateUser();
 	}
     }
     public Boolean validate(User u) {

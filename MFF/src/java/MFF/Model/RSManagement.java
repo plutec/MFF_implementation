@@ -14,6 +14,10 @@ public class RSManagement {
     public RSManagement() {
 	
     }
+    public void addUser(User u) throws DuplicateUser {
+	DAOUser dU=new DAOUser();
+	dU.insert(u);
+    }
     public User login(User u) throws NotLoginUser {
 	DAOUser dU=new DAOUser();
 	if (dU.validate(u)) {

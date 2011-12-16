@@ -5,8 +5,11 @@
 
 package MFF.Controller;
 
+import MFF.Exceptions.DuplicateUser;
 import MFF.Model.*;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -32,9 +35,23 @@ public class UserController implements ControllerInterface {
 		}
 		return new HashMap<String, Object>();
 	}
-	//TODO
+	//Params: "nick", "pass"
+	//Return: "user" -> Objecto del usuario creado
+	//Return: "user" -> null si la inserción no ha sido válida
 	protected HashMap<String, Object> addUser(HashMap<String, Object> parameters) {
-		return null;
+	    HashMap<String, Object> toRet=new HashMap<String, Object>();
+	    User toInsert=new User((String)parameters.get("nick"), (String)parameters.get("pass"), false);
+	try {
+	    model.addUser(toInsert);
+	    toRet.put("user", toInsert);
+
+	} catch (DuplicateUser ex) {
+	    Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+	    toRet.put("user", null);
+	}
+	    toRet.put("address", "Views_addUser.jsp");
+	    toRet.put("title", "MFF :: Usuario creado correctamente");
+	    return toRet;
 	}
 	//Params:
 	// "nick", "pass"
@@ -57,7 +74,6 @@ public class UserController implements ControllerInterface {
 	protected HashMap<String, Object> getBestRatedFilmsByUser(HashMap<String, Object> parameters) {
 		return null;
 	}
-	//TODO hacer para mañana
 	//Params
 	//"nick", nick del usuario a buscar, puede ser parcial
 	//"users" ArrayList de usuarios coincidentes con la búsqueda
