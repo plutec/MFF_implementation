@@ -58,6 +58,7 @@ public class FilmController implements ControllerInterface{
 	}
 	//TODO sólo para guardar el formulario
 	//Params: "title", "year"
+	//Return "film", Film de la película guardada ya con el ID asociado.
 	protected HashMap<String, Object> add(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
 		Film f=new Film(-1, (String)parameters.get("title"), (Integer)parameters.get("year"));
