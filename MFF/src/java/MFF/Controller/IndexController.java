@@ -35,6 +35,8 @@ public class IndexController implements ControllerInterface {
 		int max=10; //Máximo de películas a devolver
 		ArrayList<Film> films=model.getBestRatedFilms(max);
 		toRet.put("films", films);
+		//Indicamos el título
+		toRet.put("title", "MFF :: Inicio");
 		//Indicamos la vista
 		toRet.put("address", "View_FrontPage.jsp");
 		return toRet;
