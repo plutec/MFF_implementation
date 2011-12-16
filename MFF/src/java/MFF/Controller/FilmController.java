@@ -52,6 +52,7 @@ public class FilmController implements ControllerInterface{
 	    toRet.put("address", "View_Film.jsp");
 	    return toRet;
 	}
+	//TODO para guardar el formulario
 	protected HashMap<String, Object> add(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
 		if (parameters.containsKey("add")) { //Si está este parámetro en get, es para añadir la película a la BDD

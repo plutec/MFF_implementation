@@ -1,7 +1,8 @@
 
 package MFF.Model;
 
-import MFF.Model.DAO.DAOFilm;
+import MFF.Model.DAO.*;
+import MFF.Exceptions.*;
 import java.util.ArrayList;
 
 /**
@@ -12,6 +13,14 @@ import java.util.ArrayList;
 public class RSManagement {
     public RSManagement() {
 	
+    }
+    public User login(User u) throws NotLoginUser {
+	DAOUser dU=new DAOUser();
+	if (dU.validate(u)) {
+	    return u;
+	} else {
+	    throw new NotLoginUser();
+	}
     }
     public ArrayList<Film> getBestRatedFilms(int n) {
 	DAOFilm dF=new DAOFilm();
@@ -25,5 +34,4 @@ public class RSManagement {
 	DAOFilm dF=new DAOFilm();
 	return dF.search(s);
     }
-
 }
