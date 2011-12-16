@@ -6,6 +6,7 @@
 package MFF.Controller;
 
 import MFF.Model.DAO.*;
+import MFF.Model.Film;
 import java.util.HashMap;
 
 /**
@@ -40,6 +41,9 @@ public class FilmController implements ControllerInterface{
 		toRet.put("title", "MFF :: Resultados búsqueda");
 		toRet.put("address", "View_FilmsSearchResults.jsp");
 		return toRet;
+	}
+	protected Film get(HashMap<String, Object> parameters) { // TODO: le paso el id de la película que quiero consultar como "id"
+		return null;
 	}
 	protected HashMap<String, Object> add(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
