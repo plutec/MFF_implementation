@@ -21,6 +21,8 @@ public class FilmController implements ControllerInterface{
 	public HashMap<String, Object> call(String action, HashMap<String, Object> parameters) {
 		if (action.equals("search")) {
 			return this.searchFilm(parameters);
+		} else if(action.equals("get")) {
+			return this.get(parameters);
 		} else if(action.equals("add")) {
 			return this.add(parameters);
 		} else if(action.equals("edit")) {

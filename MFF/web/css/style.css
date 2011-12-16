@@ -138,7 +138,7 @@ header {
 }
 
 #content .film .metadata {
-	background: rgba(0, 0, 0, 0.8);
+	background: rgba(255, 255, 255, 0.9);
 	-webkit-border-bottom-right-radius: 5px;
 	-webkit-border-bottom-left-radius: 5px;
 	-moz-border-radius-bottomright: 5px;
@@ -146,14 +146,20 @@ header {
 	border-bottom-right-radius: 5px;
 	border-bottom-left-radius: 5px;
 	bottom: 0;
-	color: #FFF;
+	color: #333;
 	line-height: 1.3em;
 	margin-left: -10px;
 	padding: 5px;
 	position: absolute;
 	text-align: center;
 	font-size: 0.7em;
+	font-weight: bold;
 	width: 172px;
+}
+
+#content a.film {
+	color: #333;
+	text-decoration: none;
 }
 
 #content .film .metadata .stars_yellow {
@@ -169,6 +175,10 @@ header {
 	height: 24px;
 	margin: 10px auto;
 	width: 120px;
+}
+
+#content .filmCard .film {
+	
 }
 
 #content.error {

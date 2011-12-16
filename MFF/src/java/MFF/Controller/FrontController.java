@@ -40,9 +40,15 @@ public class FrontController extends HttpServlet {
 		if (controllerS.equals("Index")) {
 			controllerO=new IndexController();
 		} else if(controllerS.equals("Film")) {
+			
 			controllerO = new FilmController();
+			
 			String searchString = request.getParameter("search");
-			parameters.put("search", searchString);
+			if (searchString != null) parameters.put("search", searchString);
+			
+			String filmID = request.getParameter("id");
+			if (filmID != null) parameters.put("id", Integer.valueOf(filmID));
+			
 		} else if(controllerS.equals("Rating")) {
 			controllerO = new RatingController();
 		} else if(controllerS.equals("User")) {
