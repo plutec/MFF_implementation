@@ -47,8 +47,9 @@ public class FilmController implements ControllerInterface{
 	protected HashMap<String, Object> get(HashMap<String, Object> parameters) {
 	    HashMap<String, Object> toRet=new HashMap<String, Object>();
 	    RSManagement rsm=new RSManagement();
-	    toRet.put("film", rsm.searchFilmById((Integer)parameters.get("id")));
-	    toRet.put("title", "MFF :: Ficha de película"); //TODO que aquí aparezca el nombre de la peli
+	    Film f=rsm.searchFilmById((Integer)parameters.get("id"));
+	    toRet.put("film", f);
+	    toRet.put("title", "MFF :: Película "+f.getTitle());
 	    toRet.put("address", "View_Film.jsp");
 	    return toRet;
 	}
