@@ -27,7 +27,8 @@ public class DAOFilm {
 	public ArrayList<Film> search(String s) {
 		try {
 			ArrayList<Film> toRet=new ArrayList<Film>(); //TODO, sólo busca películas valoradas, si no lo están, no salen en esta búsqueda
-			String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND ((title LIKE ?) OR (year=?)) GROUP BY id";
+			//String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND ((title LIKE ?) OR (year=?)) GROUP BY id";
+			String sql = "SELECT id, year, title, avgrate FROM film WHERE id =(SELECT film_id, AVG(rate) avgrate FROM ratings WHERE film_id=film.id) AND ((title LIKE ?) OR (year=?)) GROUP BY id";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setString(1, "%" + s + "%");
 			try { query.setInt(2, Integer.parseInt(s)); } catch (Exception e) { query.setInt(2, 0); }
