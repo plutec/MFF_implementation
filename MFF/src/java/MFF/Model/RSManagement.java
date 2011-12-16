@@ -34,4 +34,12 @@ public class RSManagement {
 	DAOFilm dF=new DAOFilm();
 	return dF.search(s);
     }
+    public ArrayList<User> searchUserByNick(String n) {
+	DAOUser dU=new DAOUser();
+	return dU.get(n);
+    }
+    public User getAnUser(String id) {
+	DAOUser dU=new DAOUser();
+	return dU.getAnUser(id);
+    }
 }

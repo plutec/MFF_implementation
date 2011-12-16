@@ -68,7 +68,7 @@ public class DAOUser {
     }
     
     //Devuelve una lista de usuarios coincidentes
-    public List<User> get(String n) {
+    public ArrayList<User> get(String n) {
 	ArrayList<User> toRet=new ArrayList<User>();
 	try {
 	    String sql = "SELECT id, pass, isAdmin FROM users WHERE id LIKE '%?%'";
@@ -78,7 +78,7 @@ public class DAOUser {
 	    ResultSetMetaData md = rs.getMetaData();
 	    int columns = md.getColumnCount();
 	    HashMap row = new HashMap();
-	    while (rs.next()) { //En este caso sólo debe haber 1 fila
+	    while (rs.next()) {
 		for(int i=1; i<=columns; i++)
 		    row.put(md.getColumnName(i),rs.getObject(i));
 		Boolean isAdmin=false;
@@ -92,4 +92,28 @@ public class DAOUser {
 	}
 	return null;
     }
+    public User getAnUser(String id) {
+	User toRet=null;
+	try {
+	    String sql = "SELECT id, pass, isAdmin FROM users WHERE id = '?'";
+	    PreparedStatement query = connection.prepareStatement(sql);
+	    query.setString(1, id);
+	    ResultSet rs = query.executeQuery();
+	    ResultSetMetaData md = rs.getMetaData();
+	    int columns = md.getColumnCount();
+	    HashMap row = new HashMap();
+	    while (rs.next()) { //En este caso sólo debe haber 1 fila
+		for(int i=1; i<=columns; i++)
+		    row.put(md.getColumnName(i),rs.getObject(i));
+		Boolean isAdmin=false;
+		if ((Integer)row.get("isAdmin")==1){ isAdmin=true; }
+		toRet=new User((String)row.get("id"), (String)row.get("pass"), isAdmin);
+	    }
+	    return toRet;
+	} catch (SQLException ex) {
+		Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	}
+	return null;
+    }
+
 }
