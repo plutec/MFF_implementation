@@ -1,4 +1,5 @@
 <%@page import="MFF.Model.User"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <!DOCTYPE html>
 <head>
 	<title><%= request.getAttribute("title") %></title>
@@ -33,7 +34,7 @@
 		<div id="searchBox">
 			<form action="index" method="get">
 				<select name="c" size="1">
-					<option value="Film">Películas</option>
+					<option value="Film">PelÃ­culas</option>
 					<option value="User">Usuarios</option>
 				</select>
 				<input type="hidden" name="a" value="search" />

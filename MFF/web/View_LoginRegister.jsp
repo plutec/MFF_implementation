@@ -1,11 +1,9 @@
 <%@page import="MFF.Model.User"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
 <%
-	if (request.getAttribute("user") != null || session.getAttribute("user") != null){
-		User u = (User)request.getAttribute("user");
-		session.setAttribute("user", u);
-		response.sendRedirect(response.encodeRedirectURL("index")); // No mantiene la sesión
+	if (session.getAttribute("user") != null){
+		response.sendRedirect(response.encodeRedirectURL("index"));
 	}
 %>
 <div id="content">

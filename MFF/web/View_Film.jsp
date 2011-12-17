@@ -1,5 +1,5 @@
 <%@page import="MFF.Model.Film"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
 <% Film film = (Film)request.getAttribute("film"); %>
 <div id="content">

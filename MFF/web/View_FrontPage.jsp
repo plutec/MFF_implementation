@@ -1,6 +1,6 @@
 <%@page import="MFF.Model.Film"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
 <div id="presentationWrapper">
 	<div id="presentation">

@@ -1,6 +1,6 @@
 <%@page import="MFF.Model.Film"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
 <div id="content">
 	<h1>Resultados de la búsqueda de películas "<%= request.getParameter("search") %>"</h1>
