@@ -14,68 +14,23 @@ header {
 
 #loginBox {
 	background: #660066;
+	border-radius: 0 0 5px 5px;
 	float: right;
-	font-size: .8em;
-	padding: 5px 10px 8px 10px;
+	font-size: .7em;
+	font-weight: bold;
+	padding: 8px 0 10px 0;
 }
 
 #loginBox a {
-	border-radius: 0 5px 5px 0;
 	color: #fff;
-	font-weight: bold;
-	font-size: .9em;
-	padding: 5px 10px 8px 10px;
+	padding: 8px 10px 8px 10px;
+	text-decoration: none;
 }
 
 #searchBox {
 	clear: both;
 	float: right;
 	margin-top: 50px;
-}
-
-#searchBox input.search {
-	-moz-box-shadow:inset 0px 1px 0px 0px #660066;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #660066;
-	box-shadow:inset 0px 1px 0px 0px #660066;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #660066;
-	font-family:arial;
-	padding: 4px;
-}
-
-#searchBox select {
-}
-
-#searchBox input.submit {
-	-moz-box-shadow:inset 0px 1px 0px 0px #e184f3;
-	-webkit-box-shadow:inset 0px 1px 0px 0px #e184f3;
-	box-shadow:inset 0px 1px 0px 0px #e184f3;
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cc66ff), color-stop(1, #660066) );
-	background:-moz-linear-gradient( center top, #cc66ff 5%, #660066 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc66ff', endColorstr='#660066');
-	background-color:#cc66ff;
-	-moz-border-radius:6px;
-	-webkit-border-radius:6px;
-	border-radius:6px;
-	border:1px solid #660066;
-	display:inline-block;
-	color:#ffffff;
-	font-family:arial;
-	font-size:15px;
-	font-weight:bold;
-	padding:6px 15px;
-	text-decoration:none;
-	text-shadow:1px 1px 0px #660066;
-}#searchBox input.submit:hover {
-	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #660066), color-stop(1, #cc66ff) );
-	background:-moz-linear-gradient( center top, #660066 5%, #cc66ff 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#660066', endColorstr='#cc66ff');
-	background-color:#660066;
-}#searchBox input.submit:active {
-	position:relative;
-	top:1px;
 }
 
 #presentationWrapper {
@@ -179,6 +134,78 @@ header {
 
 #content .filmCard .film {
 	
+}
+
+#content #loginForm {
+	float: left;
+	padding: 0 40px 20px 40px;
+}
+
+#content #registerForm {
+	border-left: 1px dotted #333;
+	float: left;
+	padding: 0 40px 20px 40px;
+}
+
+#content .formInputBox {
+	padding: 15px;
+}
+
+#content .formInputBox label {
+	font-size: .8em;
+	padding-right: 20px;
+	text-align: right;
+	width: 150px;
+}
+
+#content .formInputBox input.submit {
+	width: 100%;
+}
+
+input.text {
+	-moz-box-shadow:inset 0px 1px 0px 0px #660066;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #660066;
+	box-shadow:inset 0px 1px 0px 0px #660066;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #660066;
+	font-family:arial;
+	padding: 4px;
+}
+
+input.submit {
+	-moz-box-shadow:inset 0px 1px 0px 0px #e184f3;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #e184f3;
+	box-shadow:inset 0px 1px 0px 0px #e184f3;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #cc66ff), color-stop(1, #660066) );
+	background:-moz-linear-gradient( center top, #cc66ff 5%, #660066 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#cc66ff', endColorstr='#660066');
+	background-color:#cc66ff;
+	-moz-border-radius:6px;
+	-webkit-border-radius:6px;
+	border-radius:6px;
+	border:1px solid #660066;
+	display:inline-block;
+	color:#ffffff;
+	font-family:arial;
+	font-size:15px;
+	font-weight:bold;
+	padding:6px 15px;
+	text-decoration:none;
+	text-shadow:1px 1px 0px #660066;
+}
+
+input.submit:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #660066), color-stop(1, #cc66ff) );
+	background:-moz-linear-gradient( center top, #660066 5%, #cc66ff 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#660066', endColorstr='#cc66ff');
+	background-color:#660066;
+}
+
+input.submit:active {
+	position:relative;
+	top:1px;
 }
 
 #content.error {
