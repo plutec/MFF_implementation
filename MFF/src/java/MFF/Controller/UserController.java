@@ -6,6 +6,7 @@
 package MFF.Controller;
 
 import MFF.Exceptions.DuplicateUser;
+import MFF.Exceptions.NotLoginUser;
 import MFF.Model.*;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -53,14 +54,12 @@ public class UserController implements ControllerInterface {
 		User toInsert=new User((String)parameters.get("nick"), (String)parameters.get("pass"), false);
 		try {
 			model.addUser(toInsert);
-			toRet.put("user", toInsert);
-			
+			toRet.put("registerOk", true);
 		} catch (DuplicateUser ex) {
-			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
-			toRet.put("user", null);
+			toRet.put("registerOk", false);
 		}
 		toRet.put("address", "View_LoginRegister.jsp");
-		toRet.put("title", "MFF :: Usuario creado correctamente");
+		toRet.put("title", "MFF :: Login y registro de usuarios");
 		return toRet;
 	}
 	//Params:
@@ -74,9 +73,10 @@ public class UserController implements ControllerInterface {
 		User u=new User((String)parameters.get("nick"), (String)parameters.get("pass"), false);
 		try {
 			u=model.login(u);
-		} catch(Exception e) {
+			toRet.put("loginOk", true);
+		} catch(NotLoginUser ex) {
 			u=null;
-			toRet.put("loginFailed", true);
+			toRet.put("loginOk", false);
 		}
 		toRet.put("address", "View_LoginRegister.jsp"); //TODO falta que me digas la página a la que lo manda.
 		toRet.put("title", "MFF :: Login y registro de usuarios");

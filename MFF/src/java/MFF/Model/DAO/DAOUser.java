@@ -37,10 +37,10 @@ public class DAOUser {
 			int isAdmin=0;
 			if (u.getIsAdmin()) { isAdmin=1; }
 			query.setInt(3, isAdmin);
-			query.executeQuery();
+			if (query.executeUpdate() == 0)
+				throw new DuplicateUser(); // TODO: Puede que no se inserte por algún otro motivo que no sea que está duplicado.
 		} catch (SQLException ex) {
-			Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex);
-			throw new DuplicateUser();
+			Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex); // TODO: Puede dar un fallo de SQL, habría que definir alguna excepción para esto.
 		}
 	}
 	public Boolean validate(User u) {
@@ -57,11 +57,12 @@ public class DAOUser {
 				for(int i=1; i<=columns; i++)
 					row.put(md.getColumnName(i),rs.getObject(i));
 			}
+			if (row.isEmpty())
+				return false;
 			String pass=row.get("pass").toString();
 			if (u.getPassword().equals(pass)) {
 				return true;
 			}
-			return false;
 		} catch (SQLException ex) {
 			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 		}

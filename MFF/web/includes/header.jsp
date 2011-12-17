@@ -13,21 +13,19 @@
 <body>
 	<header>
 		<div id="loginBox">
-			<%
-				User user = (User) session.getAttribute("user");
-				if (user == null) {
-			%>
+			<% if (session.getAttribute("user") == null) { %>
 					<a href="index?c=User&a=loginRegisterForms">Login</a>
 					<a href="index?c=User&a=loginRegisterForms">Registro</a>
 			<%
 				}else{
+					User user = (User) session.getAttribute("user");
 			%>
 					<span>Bienvenido <%= user.getId() %></span>
-					<% if (user.getIsAdmin()) { %> | <a href="#">Administrar</a> <% } %>
+					<% if (user.getIsAdmin()) { %>
+						<a href="#">Administrar</a>
+					<% } %>
 					<a href="index?c=User&a=logoutUser">Salir</a>
-			<%
-				}
-			%>
+			<% } %>
 		</div>
 		<div id="searchBox">
 			<form action="index" method="get">
