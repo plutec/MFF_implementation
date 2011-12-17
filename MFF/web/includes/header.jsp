@@ -25,7 +25,7 @@
 					<span>
 						Bienvenido <%= user.getId() %>
 						<% if (user.getIsAdmin()) { %> | <a href="#">Administrar</a> <% } %>
-						<a href="#">Salir</a>
+						<a href="index?c=User&a=logoutUser">Salir</a>
 					</span>
 			<%
 				}

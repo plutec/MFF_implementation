@@ -30,6 +30,8 @@ public class UserController implements ControllerInterface {
 			return this.addUser(parameters);
 		} else if(action.equals("loginUser")) {
 			return this.loginUser(parameters);
+		} else if(action.equals("logoutUser")) {
+			return this.logoutUser(parameters);
 		} else if(action.equals("getBestRatedFilmsByUser")) {
 			return this.getBestRatedFilmsByUser(parameters);
 		} else if(action.equals("searchUserByNick")) {
@@ -79,6 +81,13 @@ public class UserController implements ControllerInterface {
 		toRet.put("address", "View_LoginRegister.jsp"); //TODO falta que me digas la página a la que lo manda.
 		toRet.put("title", "MFF :: Login y registro de usuarios");
 		toRet.put("user", u);
+		return toRet;
+	}
+	protected HashMap<String, Object> logoutUser(HashMap<String, Object> parameters) {
+		HashMap<String, Object> toRet=new HashMap<String, Object>();
+		toRet.put("address", "View_LoginRegister.jsp"); //TODO falta que me digas la página a la que lo manda.
+		toRet.put("title", "MFF :: Login y registro de usuarios");
+		toRet.put("logout", true);
 		return toRet;
 	}
 	protected HashMap<String, Object> getBestRatedFilmsByUser(HashMap<String, Object> parameters) {

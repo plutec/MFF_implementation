@@ -2,7 +2,15 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
 <%
-	if (session.getAttribute("user") != null){
+	if (session.getAttribute("user") != null) {
+		response.sendRedirect(response.encodeRedirectURL("index"));
+	}
+	if (request.getAttribute("logout") != null && (Boolean)request.getAttribute("logout") == true) {
+		session.invalidate();
+		response.sendRedirect(response.encodeRedirectURL("index"));
+	}
+	if (request.getAttribute("user") != null){
+		session.setAttribute("user", request.getAttribute("user"));
 		response.sendRedirect(response.encodeRedirectURL("index"));
 	}
 %>
