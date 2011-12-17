@@ -5,7 +5,7 @@
 	if (request.getAttribute("user") != null || session.getAttribute("user") != null){
 		User u = (User)request.getAttribute("user");
 		session.setAttribute("user", u);
-		response.sendRedirect(response.encodeRedirectURL("index")) // No mantiene la sesión;
+		response.sendRedirect(response.encodeRedirectURL("index")); // No mantiene la sesión
 	}
 %>
 <div id="content">
