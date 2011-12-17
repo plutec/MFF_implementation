@@ -39,6 +39,9 @@ public class User {
 	public Boolean getIsAdmin() {
 		return isAdmin;
 	}
+	public void setAsAdmin() {
+		isAdmin = true;
+	}
 	public void insertRating(Rating r) {
 		ratings.add(r);
 	}

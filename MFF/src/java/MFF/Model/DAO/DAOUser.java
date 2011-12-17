@@ -45,7 +45,7 @@ public class DAOUser {
 	}
 	public Boolean validate(User u) {
 		try {
-			String sql = "SELECT id, pass FROM users WHERE id = ?";
+			String sql = "SELECT id, pass, admin FROM users WHERE id = ?";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setString(1, u.getId());
 			ResultSet rs = query.executeQuery();
@@ -60,6 +60,9 @@ public class DAOUser {
 			if (row.isEmpty())
 				return false;
 			String pass=row.get("pass").toString();
+			if ((Boolean)row.get("admin")) {
+				u.setAsAdmin();
+			}
 			if (u.getPassword().equals(pass)) {
 				return true;
 			}
