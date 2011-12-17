@@ -7,7 +7,6 @@
 	}
 	if (request.getAttribute("logout") != null && (Boolean)request.getAttribute("logout") == true) {
 		session.invalidate();
-		response.sendRedirect(response.encodeRedirectURL("index"));
 	}
 	if (request.getAttribute("user") != null){
 		session.setAttribute("user", request.getAttribute("user"));

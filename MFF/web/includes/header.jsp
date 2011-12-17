@@ -22,11 +22,9 @@
 			<%
 				}else{
 			%>
-					<span>
-						Bienvenido <%= user.getId() %>
-						<% if (user.getIsAdmin()) { %> | <a href="#">Administrar</a> <% } %>
-						<a href="index?c=User&a=logoutUser">Salir</a>
-					</span>
+					<span>Bienvenido <%= user.getId() %></span>
+					<% if (user.getIsAdmin()) { %> | <a href="#">Administrar</a> <% } %>
+					<a href="index?c=User&a=logoutUser">Salir</a>
 			<%
 				}
 			%>
