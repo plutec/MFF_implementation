@@ -15,4 +15,20 @@ $(document).ready(function() {
 		});
 	});
 	
+	$('.loginValidate').keyup(function() {
+		if ($("#loginUser").val() != "" && $("#loginPass").val() != "") {
+			$("#loginSubmit").attr("disabled", false);
+		}else{
+			$("#loginSubmit").attr("disabled", true);
+		}
+	});
+	
+	$('.registerValidate').keyup(function() {
+		if ($("#registerUser").val() != "" && $("#registerPass").val() != "" && $("#registerPass").val() == $("#registerPassRepeat").val()) {
+			$("#registerSubmit").attr("disabled", false);
+		}else{
+			$("#registerSubmit").attr("disabled", true);
+		}
+	});
+	
 });

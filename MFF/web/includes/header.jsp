@@ -1,3 +1,4 @@
+<%@page import="MFF.Model.User"%>
 <!DOCTYPE html>
 <head>
 	<title><%= request.getAttribute("title") %></title>
@@ -12,14 +13,20 @@
 	<header>
 		<div id="loginBox">
 			<%
-				String username = (String) session.getAttribute("username");
-				if (username == null) {
+				User user = (User) session.getAttribute("user");
+				if (user == null) {
 			%>
-				<a href="index?c=User&a=loginRegisterForms">Login</a>
-				<a href="index?c=User&a=loginRegisterForms">Registro</a>
+					<a href="index?c=User&a=loginRegisterForms">Login</a>
+					<a href="index?c=User&a=loginRegisterForms">Registro</a>
 			<%
 				}else{
-					%><span><a href="#">Administrar</a> | <a href="#">Salir</a></span><%
+			%>
+					<span>
+						Bienvenido <%= user.getId() %>
+						<% if (user.getIsAdmin()) { %> | <a href="#">Administrar</a> <% } %>
+						<a href="#">Salir</a>
+					</span>
+			<%
 				}
 			%>
 		</div>

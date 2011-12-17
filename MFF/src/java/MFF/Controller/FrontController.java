@@ -52,7 +52,14 @@ public class FrontController extends HttpServlet {
 		} else if(controllerS.equals("Rating")) {
 			controllerO = new RatingController();
 		} else if(controllerS.equals("User")) {
+			
 			controllerO = new UserController();
+			
+			String userId = request.getParameter("nick");
+			if (userId != null) parameters.put("nick", userId);
+			String userPass = request.getParameter("pass");
+			if (userPass != null) parameters.put("pass", userPass);
+			
 		} else if(controllerS.equals("Similarity")) {
 			controllerO = new SimilarityController();
 		} else {

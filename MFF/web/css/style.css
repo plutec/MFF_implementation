@@ -15,16 +15,16 @@ header {
 #loginBox {
 	background: #660066;
 	border-radius: 0 0 5px 5px;
+	color: #fff;
 	float: right;
 	font-size: .7em;
 	font-weight: bold;
-	padding: 8px 0 10px 0;
+	padding: 8px 10px 10px 10px;
 }
 
 #loginBox a {
 	color: #fff;
 	padding: 8px 10px 8px 10px;
-	text-decoration: none;
 }
 
 #searchBox {
@@ -139,12 +139,14 @@ header {
 #content #loginForm {
 	float: left;
 	padding: 0 40px 20px 40px;
+	width: 399px;
 }
 
 #content #registerForm {
 	border-left: 1px dotted #333;
 	float: left;
 	padding: 0 40px 20px 40px;
+	width: 400px;
 }
 
 #content .formInputBox {
@@ -160,6 +162,16 @@ header {
 
 #content .formInputBox input.submit {
 	width: 100%;
+}
+
+#content .errorMessage {
+	background: crimson;
+	border-radius: 10px;
+	display: block;
+	color: #fff;
+	font-size: 0.8em;
+	margin-top: 10px;
+	padding: 10px;
 }
 
 input.text {
@@ -206,6 +218,19 @@ input.submit:hover {
 input.submit:active {
 	position:relative;
 	top:1px;
+}
+
+input.submit:disabled {
+	-moz-box-shadow: none;
+	-webkit-box-shadow: none;
+	box-shadow: none;
+	border: 1px solid #333;
+	background: #ddd;
+	text-shadow: 1px 1px 0px #333;
+}
+
+input.submit:active:disabled {
+	top: 0;
 }
 
 #content.error {

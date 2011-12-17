@@ -40,7 +40,7 @@ public class UserController implements ControllerInterface {
 	protected HashMap<String, Object> showLoginRegisterForms() {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
 		toRet.put("address", "View_LoginRegister.jsp");
-		toRet.put("title", "MFF :: Login de usuario");
+		toRet.put("title", "MFF :: Login y registro de usuarios");
 		return toRet;
 	}
 	//Params: "nick", "pass"
@@ -57,7 +57,7 @@ public class UserController implements ControllerInterface {
 			Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
 			toRet.put("user", null);
 		}
-		toRet.put("address", "Views_addUser.jsp");
+		toRet.put("address", "View_LoginRegister.jsp");
 		toRet.put("title", "MFF :: Usuario creado correctamente");
 		return toRet;
 	}
@@ -74,8 +74,10 @@ public class UserController implements ControllerInterface {
 			u=model.login(u);
 		} catch(Exception e) {
 			u=null;
+			toRet.put("loginFailed", true);
 		}
-		toRet.put("address", "login_ok.jsp"); //TODO falta que me digas la página a la que lo manda.
+		toRet.put("address", "View_LoginRegister.jsp"); //TODO falta que me digas la página a la que lo manda.
+		toRet.put("title", "MFF :: Login y registro de usuarios");
 		toRet.put("user", u);
 		return toRet;
 	}
