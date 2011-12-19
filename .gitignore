@@ -3,3 +3,4 @@
 /MFF/dist/*
 /MFF/web/WEB-INF/*
 /MFF/src/conf/*
+/MFF/build.xml
