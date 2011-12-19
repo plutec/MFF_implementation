@@ -38,7 +38,7 @@ public class UserController implements ControllerInterface {
 		} else if(action.equals("searchUserByNick")) {
 			return this.search(parameters);
 		}
-		return new HashMap<String, Object>();
+		return null;
 	}
 	protected HashMap<String, Object> showLoginRegisterForms() {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();

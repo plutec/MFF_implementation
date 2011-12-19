@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package MFF.Controller;
 
-import MFF.Model.DAO.*;
 import MFF.Model.Film;
 import MFF.Model.RSManagement;
 import java.util.HashMap;
