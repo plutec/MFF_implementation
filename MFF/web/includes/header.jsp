@@ -22,7 +22,7 @@
 			%>
 					<span>Bienvenido <%= user.getId() %></span>
 					<% if (user.getIsAdmin()) { %>
-						<a href="#">Administrar</a>
+						<a href="index?c=Admin&a=adminPanel">Administrar</a>
 					<% } %>
 					<a href="index?c=User&a=logoutUser">Salir</a>
 			<% } %>

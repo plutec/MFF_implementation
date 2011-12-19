@@ -168,6 +168,27 @@ header {
 	width: 100%;
 }
 
+#content #manageFilmsForm {
+	float: left;
+	padding: 0 40px 20px 40px;
+	width: 440px;
+}
+
+#content #manageModelForm {
+	border-left: 1px dotted #333;
+	float: left;
+	padding: 0 40px 20px 40px;
+	width: 359px;
+}
+
+#content #manageFilmsForm #addFilmForm {
+	float: left;
+}
+
+#content #manageFilmsForm #searchFilmsForm {
+	float: right;
+}
+
 #content .errorMessage {
 	background: crimson;
 	border-radius: 10px;

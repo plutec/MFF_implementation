@@ -62,6 +62,8 @@ public class FrontController extends HttpServlet {
 			
 		} else if(controllerS.equals("Similarity")) {
 			controllerO = new SimilarityController();
+		} else if(controllerS.contains("Admin")) {
+			controllerO = new AdminController();
 		} else {
 			String address="View_Error.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
