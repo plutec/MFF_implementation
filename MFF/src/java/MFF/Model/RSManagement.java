@@ -75,4 +75,15 @@ public class RSManagement {
         DAORating dR = new DAORating();
         dR.update(u, f, r);
     }
+    public ArrayList<Film> getRecommendations(User u, int n) {
+        return null;
+    }
+    //Devolvemos un usuario pues este tiene una lista de rating y cada rating su película
+    public User getBestRatedFilmsByUser(User u, int n) {
+        return null;
+    }
+    //Igual que en el anterior, pero en lugar de n películas, con todas
+    public User getRatedFilmsByUser(User u) {
+        return null;
+    }
 }
