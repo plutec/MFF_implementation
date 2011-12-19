@@ -2,12 +2,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
+<% ArrayList filmsList = (ArrayList) request.getAttribute("films"); %>
 <div id="content">
-	<h1>Resultados de la búsqueda de películas "<%= request.getParameter("search") %>"</h1>
+	<h1>Se han encontrado <%= filmsList.size() %> películas coincidentes con la búsqueda "<%= request.getParameter("search") %>"</h1>
 	
 	<div class="filmsSearchResults">
 		<%
-			ArrayList filmsList = (ArrayList) request.getAttribute("films");
 			if (filmsList != null) {
 				for (int i=0; i<filmsList.size(); i++) {
 					int id = ((Film)filmsList.get(i)).getId();
