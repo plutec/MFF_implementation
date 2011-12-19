@@ -71,4 +71,8 @@ public class RSManagement {
         Rating rate=new Rating (r, new Date(), f);
         dR.insert(u, f, rate);
     }
+    public void editRate(User u, Film f, Rating r) {
+        DAORating dR = new DAORating();
+        dR.update(u, f, r);
+    }
 }
