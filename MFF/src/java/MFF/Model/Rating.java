@@ -1,6 +1,7 @@
 
 package MFF.Model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -11,15 +12,27 @@ import java.util.Date;
 public class Rating {
     int rate;
     Date date;
-    //TODO para anzony: Navegabilidad de rating a film, y no al verres (cámbialo!!)
+    Film film;
     public Rating (int rate, Date date) {
 	this.rate=rate;
 	this.date=date;
+        this.film=null;
+    }
+    public Rating (int rate, Date date, Film film) {
+	this.rate=rate;
+	this.date=date;
+        this.film=film;
     }
     public int getRate() {
 	return rate;
     }
     public Date getDate() {
 	return date;
+    }
+    public void setFilm(Film f) {
+        film = f;
+    }
+    public Film getFilm() {
+        return film;
     }
 }

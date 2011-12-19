@@ -1,11 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package MFF.Model;
-
-import java.util.ArrayList;
 
 /**
  *
@@ -17,25 +11,19 @@ public class Film {
 	String title;
 	int year;
 	float ratingAverage;
-	ArrayList<Rating> ratings;
 	public Film(int id, String title, int year, float ratingAverage) {
 		this.id=id;
 		this.title=title;
 		this.year=year;
 		this.ratingAverage=ratingAverage;
-		ratings=new ArrayList<Rating>();
 	}
 	public Film(int id, String title, int year) {
 		this.id=id;
 		this.title=title;
 		this.year=year;
 		this.ratingAverage=0;
-		ratings=new ArrayList<Rating>();
 	}
 	//Sets
-	public void insertRating(Rating r) {
-		ratings.add(r);
-	}
 	public void setId(int id) {
 	    this.id=id;
 	}

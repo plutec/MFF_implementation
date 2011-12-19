@@ -56,7 +56,6 @@ public class FilmController implements ControllerInterface{
 	    toRet.put("address", "View_Film.jsp");
 	    return toRet;
 	}
-	//TODO sólo para guardar el formulario
 	//Params: "title", "year"
 	//Return "film", Film de la película guardada ya con el ID asociado.
 	protected HashMap<String, Object> add(HashMap<String, Object> parameters) {
