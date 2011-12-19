@@ -61,4 +61,8 @@ public class RSManagement {
         DAOFilm dF = new DAOFilm();
 	dF.update(f);
     }
+    public void deleteFilm(Film f) {
+        DAOFilm dF = new DAOFilm();
+	dF.delete(f);
+    }
 }
