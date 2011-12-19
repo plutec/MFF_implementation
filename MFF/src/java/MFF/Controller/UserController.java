@@ -36,7 +36,7 @@ public class UserController implements ControllerInterface {
 		} else if(action.equals("getBestRatedFilmsByUser")) {
 			return this.getBestRatedFilmsByUser(parameters);
 		} else if(action.equals("searchUserByNick")) {
-			return this.searchUserByNick(parameters);
+			return this.search(parameters);
 		}
 		return new HashMap<String, Object>();
 	}
