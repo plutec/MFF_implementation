@@ -6,7 +6,6 @@
 package MFF.Model;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -14,33 +13,36 @@ import java.util.List;
  * @date 13-dic-2011
  */
 public class User {
-    String id;
-    String password;
-    Boolean isAdmin;
-    ArrayList<Rating> ratings;
-
-    public User(String id, String pass, Boolean isAdmin) {
-	this.id=id;
-	this.password=pass;
-	this.isAdmin=isAdmin;
-	this.ratings=new ArrayList<Rating>();
-    }
-    public User(String id, String pass, Boolean isAdmin, ArrayList<Rating> ratings) {
-	this.id=id;
-	this.password=pass;
-	this.isAdmin=isAdmin;
-	this.ratings=ratings;
-    }
-    public String getId() {
-	return id;
-    }
-    public String getPassword() {
-	return password;
-    }
-    public Boolean getIsAdmin() {
-	return isAdmin;
-    }
-    public void insertRating(Rating r) {
-	ratings.add(r);
-    }
+	String id;
+	String password;
+	Boolean isAdmin;
+	ArrayList<Rating> ratings;
+	
+	public User(String id, String pass, Boolean isAdmin) {
+		this.id=id;
+		this.password=pass;
+		this.isAdmin=isAdmin;
+		this.ratings=new ArrayList<Rating>();
+	}
+	public User(String id, String pass, Boolean isAdmin, ArrayList<Rating> ratings) {
+		this.id=id;
+		this.password=pass;
+		this.isAdmin=isAdmin;
+		this.ratings=ratings;
+	}
+	public String getId() {
+		return id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public Boolean getIsAdmin() {
+		return isAdmin;
+	}
+	public void setAsAdmin() {
+		isAdmin = true;
+	}
+	public void insertRating(Rating r) {
+		ratings.add(r);
+	}
 }

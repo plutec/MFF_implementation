@@ -1,6 +1,6 @@
 <%@page import="MFF.Model.Film"%>
 <%@page import="java.util.ArrayList"%>
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
 <div id="presentationWrapper">
 	<div id="presentation">
@@ -23,7 +23,7 @@
 				<a href="index?c=Film&a=get&id=<%=id%>" class="film filmposter" data-title="<%=title%>" data-year="<%=year%>">
 					<div class="metadata">
 						<span><%=title%> (<%=year%>)</span>
-						<div class="stars_grey"><div class="stars_yellow" style="width:<%=rating*100/5%>"></div></div>
+						<div class="stars_grey"><div class="stars_yellow" style="width:<%=rating*100/5%>px"></div></div>
 					</div>
 				</a>
 				

@@ -1,3 +1,5 @@
+<%@page import="MFF.Model.User"%>
+<%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <!DOCTYPE html>
 <head>
 	<title><%= request.getAttribute("title") %></title>
@@ -11,23 +13,28 @@
 <body>
 	<header>
 		<div id="loginBox">
+			<% if (session.getAttribute("user") == null) { %>
+					<a href="index?c=User&a=loginRegisterForms">Login</a>
+					<a href="index?c=User&a=loginRegisterForms">Registro</a>
 			<%
-				String username = (String) session.getAttribute("username");
-				if (username == null) {
-					%><span><a href="#">Login</a></span><%
 				}else{
-					%><span><a href="#">Administrar</a> | <a href="#">Salir</a></span><%
-				}
+					User user = (User) session.getAttribute("user");
 			%>
+					<span>Bienvenido <%= user.getId() %></span>
+					<% if (user.getIsAdmin()) { %>
+						<a href="#">Administrar</a>
+					<% } %>
+					<a href="index?c=User&a=logoutUser">Salir</a>
+			<% } %>
 		</div>
 		<div id="searchBox">
 			<form action="index" method="get">
 				<select name="c" size="1">
-					<option value="Film">Películas</option>
+					<option value="Film">PelÃ­culas</option>
 					<option value="User">Usuarios</option>
 				</select>
 				<input type="hidden" name="a" value="search" />
-				<input type="text" name="search" class="search" />
+				<input type="text" name="search" class="text" />
 				<input type="submit" value="Buscar" class="submit" />
 			</form>
 		</div>
