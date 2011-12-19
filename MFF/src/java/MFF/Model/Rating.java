@@ -11,6 +11,7 @@ import java.util.Date;
 public class Rating {
     int rate;
     Date date;
+    //TODO para anzony: Navegabilidad de rating a film, y no al verres (cámbialo!!)
     public Rating (int rate, Date date) {
 	this.rate=rate;
 	this.date=date;

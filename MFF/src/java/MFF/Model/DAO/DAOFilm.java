@@ -144,7 +144,7 @@ public class DAOFilm {
 		} catch (SQLException ex) {
 			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 		}
-		return new ArrayList<Film>();//debe devolver null
+		return null;
 	}
 
 }
