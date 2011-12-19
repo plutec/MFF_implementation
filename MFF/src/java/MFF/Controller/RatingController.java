@@ -25,7 +25,7 @@ public class RatingController implements ControllerInterface {
 		} else if(action.equals("getBestRatedFilms")) {
 			return this.getBestRatedFilms(parameters);
 		}
-		return new HashMap<String, Object>();
+		return null;
 	}
 	protected HashMap<String, Object> rate(HashMap<String, Object> parameters) {
 		return null;

@@ -21,7 +21,7 @@ public class SimilarityController implements ControllerInterface {
 		} else if(action.equals("updateModel")) {
 			return this.updateModel(parameters);
 		}
-		return new HashMap<String, Object>();
+		return null;
 	}
 	protected HashMap<String, Object> getRecommendations(HashMap<String, Object> parameters) {
 		return null;
