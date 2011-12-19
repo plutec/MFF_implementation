@@ -57,4 +57,8 @@ public class RSManagement {
 	DAOFilm dF = new DAOFilm();
 	dF.insert(f);
     }
+    public void editFilm(Film f) {
+        DAOFilm dF = new DAOFilm();
+	dF.update(f);
+    }
 }

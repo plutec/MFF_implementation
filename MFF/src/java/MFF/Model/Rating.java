@@ -1,7 +1,6 @@
 
 package MFF.Model;
 
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
