@@ -1,4 +1,5 @@
-/MFF/nbproject/private/
-/MFF/build/
-/MFF/dist/
+/MFF/nbproject/private/*
+/MFF/nbproject/project.properties
+/MFF/build/*
+/MFF/dist/*
 /MFF/build/web/WEB-INF/classes/*
