@@ -53,7 +53,7 @@ public class DAORating {
     }
     public Rating get(User u, Film f) {
 	try {
-	    String sql = "SELECT rate, rate_date FROM ratings WHERE user_id='?' AND film_id=?";
+	    String sql = "SELECT rate, rate_date FROM ratings WHERE user_id=? AND film_id=?";
 	    PreparedStatement query = connection.prepareStatement(sql);
 	    query.setString(1, u.getId());
 	    query.setInt(2, f.getId());
@@ -72,7 +72,49 @@ public class DAORating {
 	}
 	return null;
     }
-    public ArrayList<Rating> getRatedFilms(User u) {
-	return null;
+    //Introduce los ratings y las películas dentro del usuario pasado como parámetros
+    public void getRatedFilms(User u) {
+        DAOFilm dF=new DAOFilm();
+        try {
+	    String sql = "SELECT film_id, rate, rate_date FROM ratings WHERE user_id=?";
+	    PreparedStatement query = connection.prepareStatement(sql);
+	    query.setString(1, u.getId());
+	    ResultSet rs = query.executeQuery();
+	    ResultSetMetaData md = rs.getMetaData();
+	    int columns = md.getColumnCount();
+	    HashMap row = new HashMap();
+	    while (rs.next()) { //En este caso sólo debe haber 1
+		for(int i=1; i<=columns; i++)
+		    row.put(md.getColumnName(i),rs.getObject(i));
+                //Creamos el objeto rating para devolverlo
+                Rating toInsert=new Rating ((Integer)row.get("rate"), (Date)row.get("rate_date"), dF.getFilm((Integer)row.get("film_id")));
+                u.insertRating(toInsert);
+	    }
+	} catch (SQLException ex) {
+		Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	}
+        
+    }
+    public void getNRatedFilms(User u, int n) {
+        DAOFilm dF=new DAOFilm();
+        try {
+	    String sql = "SELECT film_id, rate, rate_date FROM ratings WHERE user_id=? LIMIT 0,? ORDER BY rate ASC";
+	    PreparedStatement query = connection.prepareStatement(sql);
+	    query.setString(1, u.getId());
+            query.setInt(2, n);
+	    ResultSet rs = query.executeQuery();
+	    ResultSetMetaData md = rs.getMetaData();
+	    int columns = md.getColumnCount();
+	    HashMap row = new HashMap();
+	    while (rs.next()) { //En este caso sólo debe haber 1
+		for(int i=1; i<=columns; i++)
+		    row.put(md.getColumnName(i),rs.getObject(i));
+                //Creamos el objeto rating para devolverlo
+                Rating toInsert=new Rating ((Integer)row.get("rate"), (Date)row.get("rate_date"), dF.getFilm((Integer)row.get("film_id")));
+                u.insertRating(toInsert);
+	    }
+	} catch (SQLException ex) {
+		Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	}
     }
 }

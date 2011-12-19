@@ -80,10 +80,16 @@ public class RSManagement {
     }
     //Devolvemos un usuario pues este tiene una lista de rating y cada rating su película
     public User getBestRatedFilmsByUser(User u, int n) {
-        return null;
+        //Una vez tengo el usuario, le introduzco las películas valoradas por él
+        DAORating dR=new DAORating();
+        dR.getNRatedFilms(u, n); //Introduce las N películas dentro del usuario
+        return u;
     }
     //Igual que en el anterior, pero en lugar de n películas, con todas
     public User getRatedFilmsByUser(User u) {
-        return null;
+        //Una vez tengo el usuario, le introduzco las películas valoradas por él
+        DAORating dR=new DAORating();
+        dR.getRatedFilms(u); //Introduce las películas dentro del usuario
+        return u;
     }
 }
