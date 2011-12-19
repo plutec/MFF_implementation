@@ -3,6 +3,7 @@ package MFF.Model;
 import MFF.Model.DAO.*;
 import MFF.Exceptions.*;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  *
@@ -64,5 +65,10 @@ public class RSManagement {
     public void deleteFilm(Film f) {
         DAOFilm dF = new DAOFilm();
 	dF.delete(f);
+    }
+    public void rate(User u, Film f, int r) {
+        DAORating dR = new DAORating();
+        Rating rate=new Rating (r, new Date(), f);
+        dR.insert(u, f, rate);
     }
 }
