@@ -8,7 +8,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -26,7 +25,7 @@ public class DAORating {
     }
     public void insert(User u, Film f, Rating r) {
 	try {
-	    String sql = "INSERT INTO ratings(film_id, user_id, rate, rate_date) VALUES('?', '?', ?, ?)";
+	    String sql = "INSERT INTO ratings(film_id, user_id, rate, rate_date) VALUES(?, ?, ?, ?)";
 	    PreparedStatement query = connection.prepareStatement(sql);
 	    query.setInt(1, f.getId());
 	    query.setString(2, u.getId());
@@ -39,7 +38,7 @@ public class DAORating {
     }
     public void update(User u, Film f, Rating r) {
 	try {
-	    String sql = "UPDATE rating SET rate_date = ?, rate = ? WHERE user_id='?' AND film_id=?";
+	    String sql = "UPDATE rating SET rate_date = ?, rate = ? WHERE user_id=? AND film_id=?";
 	    PreparedStatement query = connection.prepareStatement(sql);
 	    query.setDate(1, (Date) r.getDate());
 	    query.setInt(2, r.getRate());

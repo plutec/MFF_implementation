@@ -94,12 +94,12 @@ public class UserController implements ControllerInterface {
 		return null;
 	}
 	//Params
-	//"nick", nick del usuario a buscar, puede ser parcial
+	//"search", nick del usuario a buscar, puede ser parcial
 	//"users" ArrayList de usuarios coincidentes con la búsqueda
-	protected HashMap<String, Object> searchUserByNick(HashMap<String, Object> parameters) {
+	protected HashMap<String, Object> search(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
-		toRet.put("users", model.searchUserByNick((String) parameters.get("nick")));
-		toRet.put("address", "View_search_Users.jsp"); //TODO @skuark, tócala XD
+		toRet.put("users", model.searchUserByNick((String) parameters.get("search")));
+		toRet.put("address", "View_UsersSearchResults.jsp"); //TODO Vista para mostrar resultados de buscar usuario
 		toRet.put("title", "MFF :: Búsqueda de usuarios");
 		return toRet;
 	}
