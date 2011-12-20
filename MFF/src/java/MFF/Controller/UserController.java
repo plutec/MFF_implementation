@@ -35,7 +35,7 @@ public class UserController implements ControllerInterface {
 			return this.logoutUser(parameters);
 		} else if(action.equals("getBestRatedFilmsByUser")) {
 			return this.getBestRatedFilmsByUser(parameters);
-		} else if(action.equals("searchUserByNick")) {
+		} else if(action.equals("search")) {
 			return this.search(parameters);
 		}
 		return null;
