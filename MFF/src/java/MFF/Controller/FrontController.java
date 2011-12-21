@@ -1,5 +1,6 @@
 package MFF.Controller;
 
+import MFF.Model.User;
 import java.io.IOException;
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -10,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -80,7 +82,13 @@ public class FrontController extends HttpServlet {
 			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
 			dispatcher.forward(request, response);
 		}
-		
+		//Extraemos datos de la sesión
+		HttpSession session = request.getSession(true);
+		if (session!=null) {
+		    User u=(User) session.getAttribute("user");
+		    parameters.put("sessionUserID", u.getId());
+		}
+
 		//Llamamos al método call con el nombre de la acción
 		HashMap<String, Object> returned = controllerO.call(action, parameters);
 		
