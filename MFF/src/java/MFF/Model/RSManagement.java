@@ -2,8 +2,11 @@ package MFF.Model;
 
 import MFF.Model.DAO.*;
 import MFF.Exceptions.*;
+import MFF.Utils.HashMapSorting;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  *
@@ -86,8 +89,74 @@ public class RSManagement {
 		DAORating dR = new DAORating();
 		return dR.get(u, f);
 	}
-	public ArrayList<Film> getRecommendations(User u, int n) {
-		return null;
+	public ArrayList<Film> getRecommendations(User u) {
+	    ArrayList<Film> toRet = new ArrayList<Film>();
+	    HashMap<Integer, Float> recommendations=new HashMap<Integer, Float>();
+	    float pred;
+	    //Obtener las pelis valoradas por un usuario
+	    DAORating dR=new DAORating();
+	    DAOFilm dF=new DAOFilm();
+	    dR.getRatedFilms(u); //Con esto se enlazan las películas valoradas
+	    HashMap<Integer, Integer> ratedFilms=new HashMap<Integer, Integer>();
+	    ArrayList<Rating> ratings=u.getRatings();
+	    for(Rating r: ratings)
+		ratedFilms.put(r.getFilm().getId(), r.getRate());
+	    //Ya tenemos las películas valoradas, ahora cargamos las vecinas de todas ellas
+	    DAOSimilarity dS=new DAOSimilarity();
+	    ArrayList<Similarity> sim=new ArrayList<Similarity>();
+	    Iterator itr=ratedFilms.values().iterator();
+	    while(itr.hasNext()) {
+		sim.addAll(dS.getNN((Film) itr.next()));
+	    }
+	    //Calculamos predicción
+	    //Para ello:
+	    //Recorremos las películas vecinas y vemos las que no están valoradas por el usuario.
+	    for (Similarity s: sim) {
+		if (!ratedFilms.containsKey(s.getFilm(2).getId())) { //Si no está valorada por el usuario hacemos la predicción
+		    int filmID=s.getFilm(2).getId();
+		    //Necesitamos:
+		    //1ºExtraemos los vecinos de la película a recomendar con sus similitudes
+		    ArrayList<Similarity> filmNeighbors=dS.getNN(s.getFilm(2));
+			//Lo pasamos a HashMap
+		    HashMap<Integer, Float> filmNeighbor=new HashMap<Integer, Float>();
+		    for(Similarity ss: filmNeighbors) {
+			filmNeighbor.put(ss.getFilm(2).getId(), ss.getLikeness());
+		    }
+		    //2ºPara el usuario, las valoraciones que ha hecho (ya está en ratedFilms)
+		    //A calcular!
+		    float num=0, den=0;
+		    for(Similarity fms:filmNeighbors) {
+
+			float similarity = filmNeighbor.get(filmID);
+			//int rating = 0;
+			if (ratedFilms.get(filmID) != null) {
+			    int rating = ratedFilms.get(filmID);
+
+			    num += similarity * rating;
+			    den += similarity;
+
+			}
+		    }
+		    if (den == 0) {
+			pred=0;
+		    }
+		    pred= ((float)num / (float)den);
+		    //La insertamos en las recomendaciones
+		    recommendations.put(filmID, pred);
+		    }
+	    }
+	    //Una vez hemos hecho las recomendaciones, las ordenamos de mayor a menor
+
+	    HashMap<Integer, Float> recommendationsSorted = HashMapSorting.sortHashMap(recommendations);
+	    //Y ahora extramos los IDs y generamos películas para mandarlas al exterior del mundo del espacio del...
+	    
+	    itr=recommendationsSorted.keySet().iterator();
+	    while(itr.hasNext()) {
+		Integer key=(Integer)itr.next();
+		toRet.add(dF.getFilm(key));
+	    }
+
+	    return toRet;
 	}
 	//Devolvemos un usuario pues este tiene una lista de rating y cada rating su película
 	public User getBestRatedFilmsByUser(User u, int n) {
