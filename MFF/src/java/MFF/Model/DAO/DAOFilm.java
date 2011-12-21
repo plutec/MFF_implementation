@@ -55,18 +55,6 @@ public class DAOFilm {
 		return null;
 	}
 	public void insert(Film f) {
-	    /*int max_id = -1;
-	    try {
-		String sql = "SELECT MAX(id)+1 max FROM film";
-	        PreparedStatement query = connection.prepareStatement(sql);
-		//query.setString(1, "%" + s + "%");
-		//try { query.setInt(2, Integer.parseInt(s)); } catch (Exception e) { query.setInt(2, 0); }
-		ResultSet rs = query.executeQuery();
-		ResultSetMetaData md = rs.getMetaData();
-		rs.next();
-		max_id=(Integer) rs.getObject(1);
-	    } catch(Exception e) {  }
-	    */
 	    try {
 		String sql = "INSERT INTO film(title, year) VALUES(?, ?);";
 		PreparedStatement query = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);

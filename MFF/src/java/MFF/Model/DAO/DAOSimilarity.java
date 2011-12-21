@@ -69,7 +69,8 @@ private Connection connection;
    public List<Similarity> getNN(Film f) {
        try {
 	    //String sql = "SELECT id, year, title (SELECT  FROM film WHERE id IN (SELECT film2 FROM similarity WHERE film1=?);";
-	   String sql = "SELECT id, year, title (SELECT likeness FROM similarity,film WHERE similarity.film1=film.id AND film.id=id1)"; //TODO esta consulta está sin terminar
+	   String sql = "SELECT id, year, title (SELECT likeness FROM neighbor,film WHERE neighbor.film1=film.id AND film.id=id1)"; //TODO esta consulta está sin terminar
+	   //SELECT * FROM `film` WHERE `id` IN (SELECT `film2` FROM `neighbor` WHERE `film1`=17601)
 	   PreparedStatement query = connection.prepareStatement(sql);
 	    query.setInt(1, f.getId());
 	    ResultSet rs = query.executeQuery();

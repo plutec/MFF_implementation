@@ -80,7 +80,7 @@ public class UserController implements ControllerInterface {
 			u=null;
 			toRet.put("loginOk", false);
 		}
-		toRet.put("address", "View_LoginRegister.jsp"); //TODO falta que me digas la página a la que lo manda.
+		toRet.put("address", "View_LoginRegister.jsp");
 		toRet.put("title", "MFF :: Login y registro de usuarios");
 		toRet.put("user", u);
 		return toRet;

@@ -82,6 +82,10 @@ public class RSManagement {
 		DAORating dR = new DAORating();
 		dR.update(u, f, r);
 	}
+	public Rating getRate(User u, Film f) {
+		DAORating dR = new DAORating();
+		return dR.get(u, f);
+	}
 	public ArrayList<Film> getRecommendations(User u, int n) {
 		return null;
 	}

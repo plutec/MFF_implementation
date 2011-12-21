@@ -3,6 +3,8 @@ package MFF.Controller;
 
 import MFF.Model.Film;
 import MFF.Model.RSManagement;
+import MFF.Model.Rating;
+import MFF.Model.User;
 import java.util.HashMap;
 
 /**
@@ -58,6 +60,12 @@ public class FilmController implements ControllerInterface{
 	protected HashMap<String, Object> get(HashMap<String, Object> parameters) {
 	    HashMap<String, Object> toRet=new HashMap<String, Object>();
 	    Film f=model.searchFilmById(Integer.parseInt((String)parameters.get("id")));
+	    if (parameters.containsKey("sessionUserID")) {
+		Rating r=model.getRate(new User((String)parameters.get("sessionUserID"), null, null), f);
+		toRet.put("userrate", r.getRate());
+	    } else {
+		toRet.put("userrate", null);
+	    }
 	    toRet.put("film", f);
 	    toRet.put("title", "MFF :: Película "+f.getTitle());
 	    toRet.put("address", "View_Film.jsp");
