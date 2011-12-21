@@ -113,7 +113,8 @@ public class UserController implements ControllerInterface {
 	//Return: "user", User, usuario coincidente.
 	protected HashMap<String, Object> getUser(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
-		toRet.put("users", model.getAnUser((String) parameters.get("id")));
+		User u=model.getAnUserWithRatings((String) parameters.get("id"));
+		toRet.put("user", u);
 		//Si hay que extraer también las valoraciones dadas por el usuario, hay que hacer más cosas aquí en el controlador
 		toRet.put("address", "View_User.jsp");
 		toRet.put("title", "MFF :: Ficha de usuario");
