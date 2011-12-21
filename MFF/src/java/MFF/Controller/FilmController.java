@@ -61,10 +61,26 @@ public class FilmController implements ControllerInterface{
 		toRet.put("address", "Dirección_de_nueva_peli.jsp"); //TODO la dirección después de añadir película
 		return toRet;
 	}
+	//Params: "title", "year", "id"
+	//Return "film", Objeto de tipo film ya guardado.
 	protected HashMap<String, Object> edit(HashMap<String, Object> parameters) {
-		return null;
+		HashMap<String, Object> toRet=new HashMap<String, Object>();
+		Film f=new Film(Integer.parseInt((String) parameters.get("id")), (String)parameters.get("title"), (Integer)parameters.get("year"));
+		model.editFilm(f);
+		toRet.put("film", f);
+		toRet.put("title", "MFF :: Edita la película "+f.getTitle());
+		toRet.put("address", "View_Dirección_de_la peli editada.jsp"); //TODO la vista después de editar película
+		return toRet;
 	}
+	//Params: "id"
+	//Return: nothing!
 	protected HashMap<String, Object> delete(HashMap<String, Object> parameters) {
-		return null;
+		HashMap<String, Object> toRet=new HashMap<String, Object>();
+		Film f=new Film(Integer.parseInt((String) parameters.get("id")), (String)parameters.get("title"), (Integer)parameters.get("year"));
+		model.deleteFilm(f);
+		toRet.put("film", f);
+		toRet.put("title", "MFF :: Elimina la "+f.getTitle());
+		toRet.put("address", "View_Dirección_de_la peli borrada.jsp"); //TODO la vista después de eliminar la película
+		return toRet;
 	}
 }
