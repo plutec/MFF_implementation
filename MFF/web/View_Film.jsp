@@ -2,6 +2,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
 <% Film film = (Film)request.getAttribute("film"); %>
+<% int userRate = (Integer)request.getAttribute("userrate"); %>
 <div id="content">
 	
 	<h1><%=film.getTitle()%> (<%=film.getYear()%>)</h1>
@@ -14,13 +15,29 @@
 			float rating = film.getRatingAverage();
 		%>
 				
-		<a href="index?c=Film&a=get&id=<%=id%>" class="film filmposter" data-title="<%=title%>" data-year="<%=year%>">
+		<div class="film filmposter" data-id="<%=id%>" data-title="<%=title%>" data-year="<%=year%>">
 			<div class="metadata">
 				<span><%=title%> (<%=year%>)</span>
 				<div class="stars_grey"><div class="stars_yellow" style="width:<%=rating*100/5%>%"></div></div>
 			</div>
-		</a>
-
+		</div>
+		
+		<div class="rateFilm">
+			<%
+				for (int i=1; i<=5; i++) {
+					if (i<=userRate) {
+			%>
+						<div class="rateFilmStar rateFilm<%=i%>" data-value="<%=i%>" style="background-position:top;"></div>
+			<%
+					} else {
+			%>
+						<div class="rateFilmStar rateFilm<%=i%>" data-value="<%=i%>" style="background-position:bottom;"></div>
+			<%
+					}
+				}
+			%>
+			<input type="button" value="Eliminar mi valoración" id="removeRateButton" class="submit" />
+		</div>
 	</div>
 	
 </div>

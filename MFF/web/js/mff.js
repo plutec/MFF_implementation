@@ -35,7 +35,6 @@ $(document).ready(function() {
 		$('.field_id').val("");
 		$('.field_title').val("");
 		$('.field_year').val("");
-		$('.formInputBoxAddFilmId').css("visibility", "hidden");
 		$('#manageFilmsSubForm').css("visibility", "visible");
 	});
 	
@@ -60,15 +59,105 @@ $(document).ready(function() {
 		})
 	});
 	
+	$('#searchFilmsInput').focusout(function() {
+		$('#searchResults').css("visibility", "hidden");
+	})
+	
 	$('#addFilmSubButton').click(function() {
+		var id = $('.field_id').val();
 		var title = $('.field_title').val();
 		var year = $('.field_year').val();
+		
+		if (id == "") {
+		
+			$.ajax({
+				url: "index?c=Film&a=add&title=" + title + "&year=" + year,
+				success: function() {
+					$('#manageFilmsSubForm > .message').text("La película se ha añadido correctamente.");
+					$('#manageFilmsSubForm > .message').removeClass("errorMessage");
+					$('#manageFilmsSubForm > .message').addClass("okMessage");
+					$('#manageFilmsSubForm > .message').slideDown('slow');
+					$('#manageFilmsSubForm > .message').delay(2000).slideUp('slow');
+					$('.field_id').val("");
+					$('.field_title').val("");
+					$('.field_year').val("");
+				},
+				error: function() {
+					$('#manageFilmsSubForm > .message').text("La película no se ha podido añadir. Revise los datos introducidos.");
+					$('#manageFilmsSubForm > .message').removeClass("okMessage");
+					$('#manageFilmsSubForm > .message').addClass("errorMessage");
+					$('#manageFilmsSubForm > .message').slideDown('slow');
+					$('#manageFilmsSubForm > .message').delay(2000).slideUp('slow');
+				}
+			})
+			
+		} else {
+			
+			$.ajax({
+				url: "index?c=Film&a=edit&id=" + id + "&title=" + title + "&year=" + year,
+				success: function() {
+					$('#manageFilmsSubForm > .message').text("La película se ha actualizado correctamente.");
+					$('#manageFilmsSubForm > .message').removeClass("errorMessage");
+					$('#manageFilmsSubForm > .message').addClass("okMessage");
+					$('#manageFilmsSubForm > .message').slideDown('slow');
+					$('#manageFilmsSubForm > .message').delay(2000).slideUp('slow');
+				},
+				error: function() {
+					$('#manageFilmsSubForm > .message').text("La película no se ha podido actualizar. Revise los datos introducidos.");
+					$('#manageFilmsSubForm > .message').removeClass("okMessage");
+					$('#manageFilmsSubForm > .message').addClass("errorMessage");
+					$('#manageFilmsSubForm > .message').slideDown('slow');
+					$('#manageFilmsSubForm > .message').delay(2000).slideUp('slow');
+				}
+			})
+			
+		}
+	});
+	
+	$('#deleteFilmSubButton').click(function() {
+		var id = $('.field_id').val();
+		
 		$.ajax({
-			url: "index?c=Film&a=add&title=" + title + "&year=" + year,
-			sucess: function(data) {
-				alert("Ok!");
+			url: "index?c=Film&a=delete&id=" + id,
+			success: function() {
+				$('#manageFilmsSubForm > .message').text("La película se ha eliminado correctamente.");
+				$('#manageFilmsSubForm > .message').removeClass("errorMessage");
+				$('#manageFilmsSubForm > .message').addClass("okMessage");
+				$('#manageFilmsSubForm > .message').slideDown('slow');
+				$('#manageFilmsSubForm > .message').delay(2000).slideUp('slow');
+			},
+			error: function() {
+				$('#manageFilmsSubForm > .message').text("La película no se ha podido eliminar.");
+				$('#manageFilmsSubForm > .message').removeClass("okMessage");
+				$('#manageFilmsSubForm > .message').addClass("errorMessage");
+				$('#manageFilmsSubForm > .message').slideDown('slow');
+				$('#manageFilmsSubForm > .message').delay(2000).slideUp('slow');
 			}
 		})
 	});
+	
+	$('.rateFilmStar').mouseout(function() {
+		$('.rateFilmStar').css('background-position', 'bottom');
+	});
+	
+	$('.rateFilmStar').mouseover(function() {
+		var value = $(this).data("value");
+		for (i=1; i<=value; i++) {
+			$('.rateFilm' + i).css('background-position', 'top');
+		}
+	});
+	
+	$('.rateFilmStar').click(function() {
+		var value = $(this).data("value");
+		$.ajax({
+			url: "index?c=Rating&a=rate&film=" + $('.film').data("id"),
+			success: function() {
+				
+			},
+			error: function() {
+				
+			}
+		})
+	})
 	
 });

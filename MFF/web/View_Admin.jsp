@@ -15,7 +15,7 @@
 		
 		<div id="manageFilmsSubForm">
 			<form>
-				<div class="formInputBox formInputBoxAddFilmId">
+				<div class="formInputBox">
 					<label for="title">Id:</label>
 					<input type="text" name="title" class="text field_id" disabled />
 				</div>
@@ -29,9 +29,11 @@
 				</div>
 				<div class="formInputBox">
 					<input type="button" value="Eliminar" id="deleteFilmSubButton" class="submit submit_delete" />
-					<input type="button" value="Añadir" id="addFilmSubButton" class="submit submit_save" />
+					<input type="button" value="Guardar" id="addFilmSubButton" class="submit submit_save" />
 				</div>
 			</form>
+			
+			<span class="message" style="display: none;"></span>
 		</div>
 	</div>
 	

@@ -93,11 +93,9 @@ public class FrontController extends HttpServlet {
 		HashMap<String, Object> returned = controllerO.call(action, parameters);
 		
 		//Mandamos a la vista que nos diga el controlador
-		String address;
+		String address = null;
 		if (returned.containsKey("address")) {
 			address = (String) returned.remove("address");
-		} else {
-			address = "View_Error.jsp";
 		}
 		
 		Iterator itr = returned.keySet().iterator();
@@ -105,8 +103,11 @@ public class FrontController extends HttpServlet {
 			String key = (String) itr.next();
 			request.setAttribute(key, returned.get(key));
 		}
-		RequestDispatcher dispatcher = request.getRequestDispatcher(address);
-		dispatcher.forward(request, response);
+		
+		if (address != null) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher(address);
+			dispatcher.forward(request, response);
+		}
 		//FIN!
 	}
 	
