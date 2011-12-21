@@ -53,6 +53,13 @@ public class RSManagement {
 	DAOUser dU = new DAOUser();
 	return dU.getAnUser(id);
     }
+    public User getAnUserWithRatings(String id) {
+	DAOUser dU = new DAOUser();
+	DAORating dR = new DAORating();
+	User toRet=dU.getAnUser(id);
+	dR.getRatedFilms(toRet);
+	return toRet;
+    }
 
     public void addFilm(Film f) {
 	DAOFilm dF = new DAOFilm();
