@@ -14,8 +14,7 @@
 		%>
                 
                         
-                <a href="index?c=User&a=get&id=<%=id%>" class="user userbusquedar" data-id"<%=id%>"> </a>
-				//falta meter el user en el css
+                <a href="index?c=User&a=get&id=<%=id%>"><div class="user userbusquedar" style="background:url('images/profile.png'); width: 128px; height: 128px; float:left;"></div> </a>
 		<%
 				}
 			}
