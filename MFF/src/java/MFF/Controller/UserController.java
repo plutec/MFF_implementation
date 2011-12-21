@@ -24,7 +24,7 @@ public class UserController implements ControllerInterface {
 	}
 	
 	@Override
-	public HashMap<String, Object> call(String action, HashMap<String, Object> parameters) {
+	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("loginRegisterForms")) {
 			return this.showLoginRegisterForms();
 		} else if (action.equals("addUser")) {
@@ -37,6 +37,8 @@ public class UserController implements ControllerInterface {
 			return this.getBestRatedFilmsByUser(parameters);
 		} else if(action.equals("search")) {
 			return this.search(parameters);
+		} else if(action.equals("get")) {
+			return this.getUser(parameters);
 		}
 		return null;
 	}
@@ -111,9 +113,9 @@ public class UserController implements ControllerInterface {
 	//Return: "user", User, usuario coincidente.
 	protected HashMap<String, Object> getUser(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
-		toRet.put("users", model.getAnUser((String) parameters.get("nick")));
+		toRet.put("users", model.getAnUser((String) parameters.get("id")));
 		//Si hay que extraer también las valoraciones dadas por el usuario, hay que hacer más cosas aquí en el controlador
-		toRet.put("address", "View_search_User.jsp"); //TODO @skuark, tócala XD
+		toRet.put("address", "View_User.jsp");
 		toRet.put("title", "MFF :: Ficha de usuario");
 		return toRet;
 	}

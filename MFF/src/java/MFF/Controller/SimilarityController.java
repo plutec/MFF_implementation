@@ -17,7 +17,7 @@ public class SimilarityController implements ControllerInterface {
     }
 
     @Override
-    public HashMap<String, Object> call(String action, HashMap<String, Object> parameters) {
+    public HashMap<String, Object> call(String action, HashMap parameters) {
 	if (action.equals("getRecommendations")) {
 	    return this.getRecommendations(parameters);
 	} else if (action.equals("updateModel")) {

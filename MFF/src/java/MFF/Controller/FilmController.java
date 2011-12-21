@@ -17,7 +17,7 @@ public class FilmController implements ControllerInterface{
     }
 	
 	@Override
-	public HashMap<String, Object> call(String action, HashMap<String, Object> parameters) {
+	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("search")) {
 			return this.searchFilm(parameters);
 		} else if(action.equals("get")) {
