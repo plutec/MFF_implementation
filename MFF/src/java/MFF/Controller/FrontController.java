@@ -54,7 +54,8 @@ public class FrontController extends HttpServlet {
 		} else if(controllerS.equals("User")) {
 			
 			controllerO = new UserController();
-			
+			String searchString = request.getParameter("search");
+			if (searchString != null) parameters.put("search", searchString);
 			String userId = request.getParameter("nick");
 			if (userId != null) parameters.put("nick", userId);
 			String userPass = request.getParameter("pass");

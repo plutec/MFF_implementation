@@ -36,8 +36,7 @@ public class FilmController implements ControllerInterface{
 	protected HashMap<String, Object> searchFilm(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
 		if (parameters.containsKey("search") && (!parameters.get("search").equals(""))) { //Si se está realizando una búsqueda, hacemos las cosas oportunas (al modelo)
-		    RSManagement rsm=new RSManagement();
-		    toRet.put("films", rsm.searchFilm((String) parameters.get("search")));
+		    toRet.put("films", model.searchFilm((String) parameters.get("search")));
 		}
 		toRet.put("title", "MFF :: Resultados búsqueda");
 		toRet.put("address", "View_FilmsSearchResults.jsp");
