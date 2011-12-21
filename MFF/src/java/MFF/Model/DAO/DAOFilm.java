@@ -8,6 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.logging.Level;
@@ -54,7 +55,7 @@ public class DAOFilm {
 		return null;
 	}
 	public void insert(Film f) {
-	    int max_id = -1;
+	    /*int max_id = -1;
 	    try {
 		String sql = "SELECT MAX(id)+1 max FROM film";
 	        PreparedStatement query = connection.prepareStatement(sql);
@@ -65,18 +66,21 @@ public class DAOFilm {
 		rs.next();
 		max_id=(Integer) rs.getObject(1);
 	    } catch(Exception e) {  }
-	    
+	    */
 	    try {
-		String sql = "INSERT INTO film(id, title, year) VALUES(?, '?', ?)";
-		PreparedStatement query = connection.prepareStatement(sql);
-		query.setInt(1, max_id);
-		query.setString(2, f.getTitle());
-		query.setInt(3, f.getYear());
-		query.executeQuery();
+		String sql = "INSERT INTO film(title, year) VALUES(?, ?);";
+		PreparedStatement query = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+		query.setString(1, f.getTitle());
+		query.setInt(2, f.getYear());
+		query.executeUpdate();
+		ResultSet res=query.getGeneratedKeys();
+		int id = -1;
+		while(res.next())
+		    id=res.getInt(1);
+		f.setId(id);
 	    } catch (SQLException ex) {
 		    Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 	    }
-	    f.setId(max_id);
     }
 	public void update(Film f) {
 		try {
@@ -85,7 +89,7 @@ public class DAOFilm {
 			query.setString(1, f.getTitle());
 			query.setInt(2, f.getYear());
 			query.setInt(3, f.getId());
-			query.executeQuery();
+			query.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 		}
@@ -95,7 +99,7 @@ public class DAOFilm {
 			String sql = "DELETE film WHERE id=?";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setInt(1, f.getId());
-			query.executeQuery();
+			query.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 		}
