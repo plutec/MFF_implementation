@@ -21,7 +21,7 @@ public class IndexController implements ControllerInterface {
 		model=new RSManagement();
 	}
 	@Override
-	public HashMap<String, Object> call(String action, HashMap<String, Object> parameters) {
+	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("index")) {
 			return this.index(parameters);
 		}
