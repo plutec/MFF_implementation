@@ -114,8 +114,13 @@ public class DAOFilm {
 				for(int i=1; i<=columns; i++)
 					row.put(md.getColumnName(i),rs.getObject(i));
 			}
+			float avgrate;
+			if (row.get("avgrate") == null)
+				avgrate = 0;
+			else
+				avgrate = ((BigDecimal)row.get("avgrate")).floatValue();
 			//Creamos el objeto película para devolverlo
-			return new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), ((BigDecimal)row.get("avgrate")).floatValue());
+			return new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), avgrate);
 		} catch (SQLException ex) {
 			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 		}

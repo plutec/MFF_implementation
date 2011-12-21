@@ -57,7 +57,7 @@ public class FilmController implements ControllerInterface{
 	//Return en el hashmap te paso con la clave "film" y el objecto de la clase Film.
 	protected HashMap<String, Object> get(HashMap<String, Object> parameters) {
 	    HashMap<String, Object> toRet=new HashMap<String, Object>();
-	    Film f=model.searchFilmById((Integer)parameters.get("id"));
+	    Film f=model.searchFilmById(Integer.parseInt((String)parameters.get("id")));
 	    toRet.put("film", f);
 	    toRet.put("title", "MFF :: Película "+f.getTitle());
 	    toRet.put("address", "View_Film.jsp");
@@ -67,11 +67,8 @@ public class FilmController implements ControllerInterface{
 	//Return "film", Film de la película guardada ya con el ID asociado.
 	protected HashMap<String, Object> add(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
-		Film f=new Film(-1, (String)parameters.get("title"), (Integer)parameters.get("year"));
+		Film f=new Film(-1, (String)parameters.get("title"), Integer.parseInt((String)parameters.get("year")));
 		model.addFilm(f);
-		toRet.put("film", f);
-		toRet.put("title", "MFF :: Inserta la película "+f.getTitle());
-		toRet.put("address", "Dirección_de_nueva_peli.jsp"); //TODO la dirección después de añadir película
 		return toRet;
 	}
 	protected HashMap<String, Object> edit(HashMap<String, Object> parameters) {

@@ -56,23 +56,17 @@ $(document).ready(function() {
 					$('.field_title').val(title);
 					$('.field_year').val(year);
 				});
-			},
-			error: function() {
-				
 			}
 		})
 	});
 	
 	$('#addFilmSubButton').click(function() {
-		var title = $(this).data("title");
-		var year = $(this).data("year");
+		var title = $('.field_title').val();
+		var year = $('.field_year').val();
 		$.ajax({
 			url: "index?c=Film&a=add&title=" + title + "&year=" + year,
 			sucess: function(data) {
 				alert("Ok!");
-			},
-			error: function() {
-				alert("Error!");
 			}
 		})
 	});

@@ -28,8 +28,8 @@
 					<input type="text" name="year" class="text field_year" />
 				</div>
 				<div class="formInputBox">
-					<input type="submit" value="Eliminar" id="deleteFilmSubButton" class="submit submit_delete" />
-					<input type="submit" value="Añadir" id="addFilmSubButton" class="submit submit_save" />
+					<input type="button" value="Eliminar" id="deleteFilmSubButton" class="submit submit_delete" />
+					<input type="button" value="Añadir" id="addFilmSubButton" class="submit submit_save" />
 				</div>
 			</form>
 		</div>
