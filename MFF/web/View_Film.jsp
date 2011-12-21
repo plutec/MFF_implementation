@@ -2,7 +2,11 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
 <% Film film = (Film)request.getAttribute("film"); %>
-<% int userRate = (Integer)request.getAttribute("userrate"); %>
+<%
+	int userRate = 0;
+	if (request.getAttribute("userrate") != null)
+		userRate = (Integer)request.getAttribute("userrate");
+%>
 <div id="content">
 	
 	<h1><%=film.getTitle()%> (<%=film.getYear()%>)</h1>
@@ -22,7 +26,7 @@
 			</div>
 		</div>
 		
-		<div class="rateFilm">
+		<div class="rateFilm" data-userrate="<%=userRate%>">
 			<%
 				for (int i=1; i<=5; i++) {
 					if (i<=userRate) {

@@ -1,7 +1,7 @@
 
 package MFF.Model;
 
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -9,29 +9,29 @@ import java.util.Date;
  * @date 13-dic-2011
  */
 public class Rating {
-    int rate;
-    Date date;
-    Film film;
-    public Rating (int rate, Date date) {
-	this.rate=rate;
-	this.date=date;
-        this.film=null;
-    }
-    public Rating (int rate, Date date, Film film) {
-	this.rate=rate;
-	this.date=date;
-        this.film=film;
-    }
-    public int getRate() {
-	return rate;
-    }
-    public Date getDate() {
-	return date;
-    }
-    public void setFilm(Film f) {
-        film = f;
-    }
-    public Film getFilm() {
-        return film;
-    }
+	int rate;
+	Date date;
+	Film film;
+	public Rating (int rate, Date date) {
+		this.rate=rate;
+		this.date=date;
+		this.film=null;
+	}
+	public Rating (int rate, Date date, Film film) {
+		this.rate=rate;
+		this.date=date;
+		this.film=film;
+	}
+	public int getRate() {
+		return rate;
+	}
+	public Date getDate() {
+		return date;
+	}
+	public void setFilm(Film f) {
+		film = f;
+	}
+	public Film getFilm() {
+		return film;
+	}
 }

@@ -3,7 +3,7 @@ package MFF.Model;
 import MFF.Model.DAO.*;
 import MFF.Exceptions.*;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 
 /**
  *
@@ -75,12 +75,11 @@ public class RSManagement {
 	}
 	public void rate(User u, Film f, int r) {
 		DAORating dR = new DAORating();
-		Rating rate=new Rating (r, new Date(), f);
-		dR.insert(u, f, rate);
-	}
-	public void editRate(User u, Film f, Rating r) {
-		DAORating dR = new DAORating();
-		dR.update(u, f, r);
+		Rating rate=new Rating (r, new Date(new java.util.Date().getTime()), f);
+		if (dR.get(u, f).getRate() == 0)
+			dR.insert(u, f, rate);
+		else
+			dR.update(u, f, rate);
 	}
 	public Rating getRate(User u, Film f) {
 		DAORating dR = new DAORating();
