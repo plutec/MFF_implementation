@@ -96,7 +96,7 @@ public class DAOFilm {
 	}
 	public void delete(Film f) {
 		try {
-			String sql = "DELETE film WHERE id=?";
+			String sql = "DELETE FROM film WHERE id=?";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setInt(1, f.getId());
 			query.executeUpdate();
