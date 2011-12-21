@@ -154,14 +154,18 @@ header {
 }
 
 #content .formInputBox {
+	background: #eee;
+	overflow: hidden;
 	padding: 15px;
 }
 
 #content .formInputBox label {
 	font-size: .8em;
 	padding-right: 20px;
-	text-align: right;
-	width: 150px;
+}
+
+#content .formInputBox input.text {
+	float: right;
 }
 
 #content .formInputBox input.submit {
@@ -171,6 +175,7 @@ header {
 #content #manageFilmsForm {
 	float: left;
 	padding: 0 40px 20px 40px;
+	position: relative;
 	width: 440px;
 }
 
@@ -185,8 +190,59 @@ header {
 	float: left;
 }
 
-#content #manageFilmsForm #searchFilmsForm {
+#content #manageFilmsForm #searchFilmsInput {
 	float: right;
+}
+
+#content #manageFilmsForm #searchResults {
+	background: #ddd;
+	font-size: .7em;
+	height: 150px;
+	width: 188px;
+	overflow: auto;
+	visibility: hidden;
+	position: absolute;
+	right: 40px;
+	margin-top: 29px;
+}
+
+#content #manageFilmsForm #searchResults .filmResultsItem {
+	padding: 5px;
+}
+
+#content #manageFilmsForm #searchResults .filmResultsItem:hover {
+	background: #333;
+	color: #fff;
+	cursor: pointer;
+}
+
+#content #manageFilmsForm #manageFilmsSubForm {
+	clear: both;
+	visibility: hidden;
+	margin-top: 50px;
+
+}
+#content #manageFilmsForm #manageFilmsSubForm .field_id {
+	margin-right: 225px;
+	width: 100px;
+}
+
+#content #manageFilmsForm #manageFilmsSubForm .field_title {
+	width: 325px;
+}
+
+#content #manageFilmsForm #manageFilmsSubForm .field_year {
+	margin-right: 265px;
+	width: 60px;
+}
+
+#content #manageFilmsForm #manageFilmsSubForm .submit_delete {
+	width: 100px;
+}
+
+#content #manageFilmsForm #manageFilmsSubForm .submit_save {
+	float: right;
+	width: 100px;
 }
 
 #content .errorMessage {
