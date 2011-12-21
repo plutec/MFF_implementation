@@ -8,6 +8,35 @@
 	</div>
 </div>
 <div id="content">
+	
+	<% if (request.getAttribute("recommendations") != null) { %>
+	
+	<h1>Por tus valoraciones, seguramente te gusten estas películas:</h1>
+	
+	<div class="mostRatedFilms">
+		<%
+			ArrayList recommendations = (ArrayList) request.getAttribute("recommendations");
+			for (int i=0; i<recommendations.size(); i++) {
+				int id = ((Film)recommendations.get(i)).getId();
+				String title = ((Film)recommendations.get(i)).getTitle();
+				int year = ((Film)recommendations.get(i)).getYear();
+				float rating = ((Film)recommendations.get(i)).getRatingAverage();
+		%>
+				
+				<a href="index?c=Film&a=get&id=<%=id%>" class="film filmposter" data-title="<%=title%>" data-year="<%=year%>">
+					<div class="metadata">
+						<span><%=title%> (<%=year%>)</span>
+						<div class="stars_grey"><div class="stars_yellow" style="width:<%=rating*100/5%>%"></div></div>
+					</div>
+				</a>
+				
+		<%
+			}
+		%>
+	</div>
+	
+	<% } %>
+	
 	<h1>¿Qué películas recomiendan nuestros usuarios?</h1>
 	
 	<div class="mostRatedFilms">

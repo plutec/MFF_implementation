@@ -3,6 +3,7 @@ package MFF.Controller;
 
 import MFF.Model.Film;
 import MFF.Model.RSManagement;
+import MFF.Model.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -20,19 +21,18 @@ public class RatingController implements ControllerInterface {
 	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("rate")) {
 			return this.rate(parameters);
-		} else if(action.equals("editRate")) {
-			return this.editRate(parameters);
 		} else if(action.equals("getBestRatedFilms")) {
 			return this.getBestRatedFilms(parameters);
 		}
 		return null;
 	}
 	protected HashMap<String, Object> rate(HashMap<String, Object> parameters) {
-		return null;
-	}
-	protected HashMap<String, Object> editRate(HashMap<String, Object> parameters) {
-		
-		return null;
+		HashMap<String, Object> toRet=new HashMap<String, Object>();
+		Film f = new Film(Integer.parseInt((String)parameters.get("film")), "", 0);
+		User u = new User((String)parameters.get("sessionUserID"), "", false);
+		int rate = Integer.parseInt((String)parameters.get("rate"));
+		model.rate(u, f, rate);
+		return toRet;
 	}
 	protected HashMap<String, Object> getBestRatedFilms(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();

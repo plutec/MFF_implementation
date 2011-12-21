@@ -84,7 +84,7 @@ public class FrontController extends HttpServlet {
 		}
 		//Extraemos datos de la sesión
 		HttpSession session = request.getSession(true);
-		if (session!=null) {
+		if (session!=null && session.getAttribute("user") != null) {
 		    User u=(User) session.getAttribute("user");
 		    parameters.put("sessionUserID", u.getId());
 		}

@@ -49,7 +49,6 @@ $(document).ready(function() {
 					var title = $(this).data("title");
 					var year = $(this).data("year");
 					$(this).parent().css("visibility", "hidden");
-					$('.formInputBoxAddFilmId').css("visibility", "visible");
 					$('#manageFilmsSubForm').css("visibility", "visible");
 					$('.field_id').val(id);
 					$('.field_title').val(title);
@@ -137,22 +136,40 @@ $(document).ready(function() {
 	});
 	
 	$('.rateFilmStar').mouseout(function() {
-		$('.rateFilmStar').css('background-position', 'bottom');
+		var rate = $('.rateFilm').data("userrate");
+		for (i=1; i<=5; i++) {
+			if (i<=rate) {
+				$('.rateFilm' + i).css('background-position', 'top');
+			}else{
+				$('.rateFilm' + i).css('background-position', 'bottom');
+			}
+		}
 	});
 	
 	$('.rateFilmStar').mouseover(function() {
 		var value = $(this).data("value");
-		for (i=1; i<=value; i++) {
-			$('.rateFilm' + i).css('background-position', 'top');
+		for (i=1; i<=5; i++) {
+			if (i<=value){
+				$('.rateFilm' + i).css('background-position', 'top');
+			}else{
+				$('.rateFilm' + i).css('background-position', 'bottom');
+			}
 		}
 	});
 	
 	$('.rateFilmStar').click(function() {
 		var value = $(this).data("value");
+		$('.rateFilm').data("userrate", value);
 		$.ajax({
-			url: "index?c=Rating&a=rate&film=" + $('.film').data("id"),
+			url: "index?c=Rating&a=rate&film=" + $('.film').data("id") + "&rate=" + value,
 			success: function() {
-				
+				for (i=1; i<=5; i++) {
+					if (i<=value) {
+						$('.rateFilm' + i).css('background-position', 'top');
+					}else{
+						$('.rateFilm' + i).css('background-position', 'bottom');
+					}
+				}
 			},
 			error: function() {
 				

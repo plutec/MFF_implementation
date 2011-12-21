@@ -13,10 +13,10 @@ import java.util.HashMap;
  * @date 13-dic-2011
  */
 public class FilmController implements ControllerInterface{
-    RSManagement model;
-    public FilmController() {
-	model=new RSManagement();
-    }
+	RSManagement model;
+	public FilmController() {
+		model=new RSManagement();
+	}
 	
 	@Override
 	public HashMap<String, Object> call(String action, HashMap parameters) {
@@ -38,13 +38,13 @@ public class FilmController implements ControllerInterface{
 	protected HashMap<String, Object> searchFilm(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
 		if (parameters.containsKey("search") && (!parameters.get("search").equals(""))) { //Si se está realizando una búsqueda, hacemos las cosas oportunas (al modelo)
-		    toRet.put("films", model.searchFilm((String) parameters.get("search")));
+			toRet.put("films", model.searchFilm((String) parameters.get("search")));
 		}
 		toRet.put("title", "MFF :: Resultados búsqueda");
 		toRet.put("address", "View_FilmsSearchResults.jsp");
 		return toRet;
 	}
-
+	
 	private HashMap<String, Object> searchFilmsAdmin(HashMap<String, Object> parameters) {
 		HashMap<String, Object> toRet=new HashMap<String, Object>();
 		if (parameters.containsKey("search") && (!parameters.get("search").equals(""))) {
@@ -58,18 +58,21 @@ public class FilmController implements ControllerInterface{
 	//le paso el id de la película que quiero consultar como "id"
 	//Return en el hashmap te paso con la clave "film" y el objecto de la clase Film.
 	protected HashMap<String, Object> get(HashMap<String, Object> parameters) {
-	    HashMap<String, Object> toRet=new HashMap<String, Object>();
-	    Film f=model.searchFilmById(Integer.parseInt((String)parameters.get("id")));
-	    if (parameters.containsKey("sessionUserID")) {
-		Rating r=model.getRate(new User((String)parameters.get("sessionUserID"), null, null), f);
-		toRet.put("userrate", r.getRate());
-	    } else {
-		toRet.put("userrate", null);
-	    }
-	    toRet.put("film", f);
-	    toRet.put("title", "MFF :: Película "+f.getTitle());
-	    toRet.put("address", "View_Film.jsp");
-	    return toRet;
+		HashMap<String, Object> toRet=new HashMap<String, Object>();
+		Film f=model.searchFilmById(Integer.parseInt((String)parameters.get("id")));
+		if (parameters.containsKey("sessionUserID")) {
+			Rating r=model.getRate(new User((String)parameters.get("sessionUserID"), null, null), f);
+			if (r!=null)
+				toRet.put("userrate", r.getRate());
+			else
+				toRet.put("userrate", 0);
+		} else {
+			toRet.put("userrate", null);
+		}
+		toRet.put("film", f);
+		toRet.put("title", "MFF :: Película "+f.getTitle());
+		toRet.put("address", "View_Film.jsp");
+		return toRet;
 	}
 	//Params: "title", "year"
 	//Return "film", Film de la película guardada ya con el ID asociado.
