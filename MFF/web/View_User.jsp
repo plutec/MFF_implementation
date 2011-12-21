@@ -20,13 +20,12 @@
 					int year = f.getYear();
 					float rating = r.getRate();
                 %>
-                <a href="index?c=User&a=get&id=<%=id%>" class="user userposter" data-id="<%=id%>" data-title="<%=title%>" data-year="<%=year%>">
-			<div class="metadata">
-				<span><%=id_film%> </span>
-                                <span><%=title%> (<%=year%>)</span>
-				<div class="stars_grey"><div class="stars_yellow" style="width:<%=rating*100/5%>px"></div></div>
-			</div>
-		</a>
+                <a href="index?c=Film&a=get&id=<%=id_film%>" class="film filmposter" data-title="<%=title%>" data-year="<%=year%>">
+						<div class="metadata">
+							<span><%=title%> (<%=year%>)</span>
+							<div class="stars_grey"><div class="stars_yellow" style="width:<%=(rating*100/5)%>%"></div></div>
+						</div>
+					</a>
 
                  <%
 		   }
