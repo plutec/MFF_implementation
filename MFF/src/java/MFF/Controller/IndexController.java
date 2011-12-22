@@ -7,6 +7,7 @@ package MFF.Controller;
 
 import MFF.Model.Film;
 import MFF.Model.RSManagement;
+import MFF.Model.User;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,6 +36,9 @@ public class IndexController implements ControllerInterface {
 		int max=10; //Máximo de películas a devolver
 		ArrayList<Film> films=model.getBestRatedFilms(max);
 		toRet.put("films", films);
+		//Recomendaciones si el usuario está logueado
+		if (parameters.containsKey("sessionUserID"))
+		    toRet.put("recommendations", model.getRecommendations(new User((String) parameters.get("sessionUserID"),null,null)));
 		//Indicamos el título
 		toRet.put("title", "MFF :: Inicio");
 		//Indicamos la vista

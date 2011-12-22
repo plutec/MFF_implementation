@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 package MFF.Model.DAO;
 
@@ -24,25 +20,27 @@ import java.util.logging.Logger;
  * @date 13-dic-2011
  */
 public class DAOSimilarity {
-private Connection connection;
-    
+
+    private Connection connection;
+
     public DAOSimilarity() {
 	connection = DBConnection.getConnection();
     }
-    
+
     public void insert(Similarity s) {
 	try {
-            String sql = "INSERT INTO similarity(film1, film2, likeness) VALUES(?, ?, ?)";
+	    String sql = "INSERT INTO similarity(film1, film2, likeness) VALUES(?, ?, ?)";
 	    PreparedStatement query = connection.prepareStatement(sql);
 	    query.setInt(1, s.getFilm1().getId());
 	    query.setInt(2, s.getFilm2().getId());
 	    query.setFloat(3, s.getLikeness());
 	    query.executeQuery();
 	} catch (SQLException ex) {
-	    Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	    Logger.getLogger(DAOSimilarity.class.getName()).log(Level.SEVERE, null, ex);
 	}
     }
     //TODO el update no tiene sentido, no? Está sin hacer BIEN.
+
     public void update(Similarity s) {
 	try {
 	    String sql = "UPDATE Rattings SET likeness = ?, film1 = ?, film2 = ?";
@@ -52,43 +50,42 @@ private Connection connection;
 	    query.setObject(3, s.getFilm2());
 	    query.executeQuery();
 	} catch (SQLException ex) {
-	    Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	    Logger.getLogger(DAOSimilarity.class.getName()).log(Level.SEVERE, null, ex);
 	}
     }
     //Se borra toda la tabla de similitudes
+
     public void delete() {
 	try {
 	    String sql = "DELETE * FROM Ratings"; //Borramos toda la tabla
 	    PreparedStatement query = connection.prepareStatement(sql);
 	    query.executeQuery();
 	} catch (SQLException ex) {
-	    Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	    Logger.getLogger(DAOSimilarity.class.getName()).log(Level.SEVERE, null, ex);
 	}
     }
-    
-   public List<Similarity> getNN(Film f) {
-       try {
-	    //String sql = "SELECT id, year, title (SELECT  FROM film WHERE id IN (SELECT film2 FROM similarity WHERE film1=?);";
-	   String sql = "SELECT id, year, title (SELECT likeness FROM neighbor,film WHERE neighbor.film1=film.id AND film.id=id1)"; //TODO esta consulta está sin terminar
-	   //SELECT * FROM `film` WHERE `id` IN (SELECT `film2` FROM `neighbor` WHERE `film1`=17601)
-	   PreparedStatement query = connection.prepareStatement(sql);
+
+    public ArrayList<Similarity> getNN(Film f) {
+	try {
+	    String sql = "SELECT id, year, title, similarity FROM film, neighbor WHERE film.id=film2 AND film1=? GROUP BY id ORDER BY similarity DESC;";
+	    PreparedStatement query = connection.prepareStatement(sql);
 	    query.setInt(1, f.getId());
 	    ResultSet rs = query.executeQuery();
 	    ResultSetMetaData md = rs.getMetaData();
 	    int columns = md.getColumnCount();
 	    HashMap row = new HashMap();
-	    ArrayList<Similarity> toRet=new ArrayList<Similarity>();
+	    ArrayList<Similarity> toRet = new ArrayList<Similarity>();
 	    while (rs.next()) { //En este caso sólo debe haber 1
-		    for(int i=1; i<=columns; i++)
-			row.put(md.getColumnName(i),rs.getObject(i));
-		    //Similarity(Film film1, Film film2, float likeness)
+		for (int i = 1; i <= columns; i++) {
+		    row.put(md.getColumnName(i), rs.getObject(i));
+		}
+		//Creamos el objeto película para devolverlo
+		toRet.add(new Similarity(f, new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year")), (Float)row.get("similarity")));
 	    }
-	    //Creamos el objeto película para devolverlo
-	    //return new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), ((BigDecimal)row.get("avgrate")).floatValue());
+	    return toRet;
 	} catch (SQLException ex) {
-		Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+	    Logger.getLogger(DAOSimilarity.class.getName()).log(Level.SEVERE, null, ex);
 	}
 	return null;
-   }
-    
+    }
 }

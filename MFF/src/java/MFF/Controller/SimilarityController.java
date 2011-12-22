@@ -1,6 +1,7 @@
 package MFF.Controller;
 
 import MFF.Model.RSManagement;
+import MFF.Model.User;
 import java.util.HashMap;
 
 /**
@@ -27,7 +28,10 @@ public class SimilarityController implements ControllerInterface {
     }
 
     protected HashMap<String, Object> getRecommendations(HashMap<String, Object> parameters) {
-	return null;
+	HashMap<String, Object> toRet= new HashMap<String, Object>();
+	toRet.put("recommendations", model.getRecommendations(new User((String) parameters.get("sessionUserID"),null,null)));
+	toRet.put("address", "View_FrontPage.jsp");
+	return toRet;
     }
 
     protected HashMap<String, Object> updateModel(HashMap<String, Object> parameters) {
