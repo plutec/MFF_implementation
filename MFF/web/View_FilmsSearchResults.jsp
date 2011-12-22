@@ -2,9 +2,15 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
 <%@include file="/includes/header.jsp" %>
-<% ArrayList filmsList = (ArrayList) request.getAttribute("films"); %>
+<% ArrayList filmsList = (ArrayList) request.getAttribute("films");
+String search="";
+if (request.getParameter("search")!=null) { search = request.getParameter("search"); }
+int number=0;
+if (filmsList!=null) { number=filmsList.size(); }
+%>
+
 <div id="content">
-	<h1>Se han encontrado <%= filmsList.size() %> películas coincidentes con la búsqueda "<%= request.getParameter("search") %>"</h1>
+	<h1>Se han encontrado <%= number %> películas coincidentes con la búsqueda "<%= search %>"</h1>
 	
 	<div class="filmsSearchResults">
 		<%
