@@ -2,9 +2,12 @@
 <%@page import="java.util.ArrayList"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@include file="/includes/header.jsp" %>
-<% ArrayList usersList = (ArrayList) request.getAttribute("users"); %>
+<% ArrayList usersList = (ArrayList) request.getAttribute("users");
+int number=0;
+if (usersList!=null) { number=usersList.size(); }
+%>
 <div id="content">
-	<h1>Se han encontrado <%= usersList.size() %> usuarios coincidentes con la búsqueda "<%= request.getParameter("search") %>"</h1>
+	<h1>Se han encontrado <%= number %> usuarios coincidentes con la búsqueda "<%= request.getParameter("search") %>"</h1>
 	<div class="usersSearchResults">
 		<%
 			if (usersList != null) {
