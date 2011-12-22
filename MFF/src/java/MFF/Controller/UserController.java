@@ -9,8 +9,6 @@ import MFF.Exceptions.DuplicateUser;
 import MFF.Exceptions.NotLoginUser;
 import MFF.Model.*;
 import java.util.HashMap;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *

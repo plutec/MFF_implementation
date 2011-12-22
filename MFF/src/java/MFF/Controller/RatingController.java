@@ -21,6 +21,8 @@ public class RatingController implements ControllerInterface {
 	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("rate")) {
 			return this.rate(parameters);
+		} else if(action.equals("delete")) {
+			return this.delete(parameters);
 		} else if(action.equals("getBestRatedFilms")) {
 			return this.getBestRatedFilms(parameters);
 		}
@@ -32,6 +34,13 @@ public class RatingController implements ControllerInterface {
 		User u = new User((String)parameters.get("sessionUserID"), "", false);
 		int rate = Integer.parseInt((String)parameters.get("rate"));
 		model.rate(u, f, rate);
+		return toRet;
+	}
+	protected HashMap<String, Object> delete(HashMap<String, Object> parameters) {
+		HashMap<String, Object> toRet=new HashMap<String, Object>();
+		Film f = new Film(Integer.parseInt((String)parameters.get("film")), "", 0);
+		User u = new User((String)parameters.get("sessionUserID"), "", false);
+		model.deleteRating(u, f);
 		return toRet;
 	}
 	protected HashMap<String, Object> getBestRatedFilms(HashMap<String, Object> parameters) {
