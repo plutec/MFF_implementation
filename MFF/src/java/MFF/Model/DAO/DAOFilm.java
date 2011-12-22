@@ -39,14 +39,16 @@ public class DAOFilm {
 			while (rs.next()) {
 				for(int i=1; i<=columns; i++)
 					row.put(md.getColumnName(i),rs.getObject(i));
-				float avgrate;
-				if (row.get("avgrate") == null)
-					avgrate = 0;
-				else
-					avgrate = ((BigDecimal)row.get("avgrate")).floatValue();
-				System.out.println((Integer)row.get("id1"));
-				toRet.add(new Film((Integer)row.get("id1"), (String)row.get("title"), (Integer)row.get("year"), avgrate));
+
+				float avgrate=0;
+				if (row.get("avgrate") != null) { avgrate = ((BigDecimal)row.get("avgrate")).floatValue(); }
+
+				int year=0;
+				if (row.get("year") != null) { year=(Integer)row.get("year"); }
+				
+				toRet.add(new Film((Integer)row.get("id1"), (String)row.get("title"), year, avgrate));
 			}
+			int i=1;
 			//Devolvemos
 			return toRet;
 		} catch (SQLException ex) {
