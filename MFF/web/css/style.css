@@ -71,6 +71,7 @@ header {
 
 #content h1 {
 	color: #660066;
+	clear: both;
 	font-size: 1.4em;
 	font-weight: bold;
 	padding: 40px 0;
