@@ -76,9 +76,9 @@ public class DAOUser {
 	public ArrayList<User> get(String n) {
 		ArrayList<User> toRet=new ArrayList<User>();
 		try {
-			String sql = "SELECT id, pass, admin FROM users WHERE id LIKE '%"+n+"%';";
+			String sql = "SELECT id, pass, admin FROM users WHERE id LIKE ?;";
 			PreparedStatement query = connection.prepareStatement(sql);
-			//query.setString(1, "%" + n + "%");
+			query.setString(1, "%" + n + "%");
 			ResultSet rs = query.executeQuery();
 			ResultSetMetaData md = rs.getMetaData();
 			int columns = md.getColumnCount();
@@ -108,7 +108,7 @@ public class DAOUser {
 			while (rs.next()) { //En este caso sólo debe haber 1 fila
 				for(int i=1; i<=columns; i++)
 					row.put(md.getColumnName(i),rs.getObject(i));
-				toRet=new User((String)row.get("id"), (String)row.get("pass"), (Boolean)row.get("isAdmin"));
+				toRet=new User((String)row.get("id"), (String)row.get("pass"), (Boolean)row.get("admin"));
 			}
 			return toRet;
 		} catch (SQLException ex) {

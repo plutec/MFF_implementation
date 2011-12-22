@@ -26,6 +26,8 @@
 			</div>
 		</div>
 		
+		<% if (session.getAttribute("user") != null) { %>
+		
 		<div class="rateFilm" data-userrate="<%=userRate%>">
 			<%
 				for (int i=1; i<=5; i++) {
@@ -42,6 +44,9 @@
 			%>
 			<input type="button" value="Eliminar mi valoración" id="removeRateButton" class="submit" />
 		</div>
+			
+		<% } %>
+		
 	</div>
 	
 </div>

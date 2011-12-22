@@ -6,7 +6,7 @@
 <% ArrayList<Rating> ratingList = (ArrayList) user.getRatings(); %>
 
 <div id="content">
-	.
+
         <h1><%=user.getId()%></h1>
         <div class="userCard">
 		<%

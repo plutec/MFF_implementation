@@ -4,7 +4,7 @@
 <%@include file="/includes/header.jsp" %>
 <div id="presentationWrapper">
 	<div id="presentation">
-		<p id="sentence">Erase una vez que se era, un sistema de recomendación maravilloso llamado MFFFFFFFFF (My Favorurit Films).</p>
+		<p id="sentence">Con MFF podrás encontrar las películas que seguro te van a entusiasmar. Regístrate gratis y pruébalo.</p>
 	</div>
 </div>
 <div id="content">

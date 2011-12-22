@@ -1,5 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8" session="true"%>
-<%@include file="/includes/header.jsp" %>
+<%@include file="/includes/header.jsp"%>
 <div id="content">
 	
 	<div id="manageFilmsForm">
@@ -39,6 +39,11 @@
 	
 	<div id="manageModelForm">
 		<h1>Gestión del modelo</h1>
+		
+		<form action="index?c=Similarity&action=updateModel">
+			<input type="button" value="Actualizar Modelo" class="submit" />
+		</form>
+		
 	</div>
 	
 </div>

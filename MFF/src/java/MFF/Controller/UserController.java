@@ -103,8 +103,13 @@ public class UserController implements ControllerInterface {
 		}
 		//String cad=(String) parameters.get("search");
 		//toRet.put("users", model.searchUserByNick((String) parameters.get("search")));
-		toRet.put("address", "View_UsersSearchResults.jsp"); //TODO Vista para mostrar resultados de buscar usuario
-		toRet.put("title", "MFF :: Búsqueda de usuarios");
+		if (parameters.get("sessionUserID") != null){
+			toRet.put("address", "View_UsersSearchResults.jsp");
+			toRet.put("title", "MFF :: Búsqueda de usuarios");
+		}else{
+			toRet.put("address", "View_Error.jsp");
+			toRet.put("title", "MFF :: Acceso denegado");
+		}
 		return toRet;
 	}
 	//param: "id"
@@ -114,8 +119,13 @@ public class UserController implements ControllerInterface {
 		User u=model.getAnUserWithRatings((String) parameters.get("id"));
 		toRet.put("user", u);
 		//Si hay que extraer también las valoraciones dadas por el usuario, hay que hacer más cosas aquí en el controlador
-		toRet.put("address", "View_User.jsp");
-		toRet.put("title", "MFF :: Ficha de usuario");
+		if (parameters.get("sessionUserID") != null){
+			toRet.put("address", "View_User.jsp");
+			toRet.put("title", "MFF :: Ficha de usuario");
+		}else{
+			toRet.put("address", "View_Error.jsp");
+			toRet.put("title", "MFF :: Acceso denegado");
+		}
 		return toRet;
 	}
 
