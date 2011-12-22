@@ -37,10 +37,10 @@ public class DAOUser {
 			int isAdmin=0;
 			if (u.getIsAdmin()) { isAdmin=1; }
 			query.setInt(3, isAdmin);
-			if (query.executeUpdate() == 0)
-				throw new DuplicateUser(); // TODO: Puede que no se inserte por algún otro motivo que no sea que está duplicado.
+			query.executeUpdate();
 		} catch (SQLException ex) {
 			Logger.getLogger(DAOUser.class.getName()).log(Level.SEVERE, null, ex); // TODO: Puede dar un fallo de SQL, habría que definir alguna excepción para esto.
+			throw new DuplicateUser(); // TODO: Puede que no se inserte por algún otro motivo que no sea que está duplicado.
 		}
 	}
 	public Boolean validate(User u) {

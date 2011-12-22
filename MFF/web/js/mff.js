@@ -58,7 +58,7 @@ $(document).ready(function() {
 		})
 	});
 	
-	$('#searchFilmsInput').focusout(function() {
+	$('#searchResults').focusout(function() {
 		$('#searchResults').css("visibility", "hidden");
 	})
 	
@@ -175,6 +175,20 @@ $(document).ready(function() {
 				
 			}
 		})
-	})
+	});
+	
+	$('#removeRateButton').click(function() {
+		$.ajax({
+			url: "index?c=Rating&a=delete&film=" + $('.film').data("id"),
+			success: function() {
+				for (i=1; i<=5; i++) {
+					$('.rateFilm' + i).css('background-position', 'bottom');
+				}
+			},
+			error: function() {
+				
+			}
+		})
+	});
 	
 });

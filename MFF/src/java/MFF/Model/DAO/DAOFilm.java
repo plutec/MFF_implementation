@@ -57,21 +57,21 @@ public class DAOFilm {
 		return null;
 	}
 	public void insert(Film f) {
-	    try {
-		String sql = "INSERT INTO film(title, year) VALUES(?, ?);";
-		PreparedStatement query = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-		query.setString(1, f.getTitle());
-		query.setInt(2, f.getYear());
-		query.executeUpdate();
-		ResultSet res=query.getGeneratedKeys();
-		int id = -1;
-		while(res.next())
-		    id=res.getInt(1);
-		f.setId(id);
-	    } catch (SQLException ex) {
-		    Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
-	    }
-    }
+		try {
+			String sql = "INSERT INTO film(title, year) VALUES(?, ?);";
+			PreparedStatement query = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+			query.setString(1, f.getTitle());
+			query.setInt(2, f.getYear());
+			query.executeUpdate();
+			ResultSet res=query.getGeneratedKeys();
+			int id = -1;
+			while(res.next())
+				id=res.getInt(1);
+			f.setId(id);
+		} catch (SQLException ex) {
+			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 	public void update(Film f) {
 		try {
 			String sql = "UPDATE film SET title = ?, year = ? WHERE id=?";

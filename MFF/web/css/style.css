@@ -319,7 +319,7 @@ input.submit {
 	text-shadow:1px 1px 0px #660066;
 }
 
-input.submit:hover {
+input.submit:enabled:hover {
 	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #660066), color-stop(1, #cc66ff) );
 	background:-moz-linear-gradient( center top, #660066 5%, #cc66ff 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#660066', endColorstr='#cc66ff');

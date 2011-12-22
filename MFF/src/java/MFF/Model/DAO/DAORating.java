@@ -50,6 +50,17 @@ public class DAORating {
 		}
 		
 	}
+	public void delete(User u, Film f) {
+		try {
+			String sql = "DELETE FROM ratings WHERE user_id=? AND film_id=?";
+			PreparedStatement query = connection.prepareStatement(sql);
+			query.setString(1, u.getId());
+			query.setInt(2, f.getId());
+			query.executeUpdate();
+		} catch (SQLException ex) {
+			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+		}
+	}
 	public Rating get(User u, Film f) {
 		try {
 			String sql = "SELECT rate, rate_date FROM ratings WHERE user_id=? AND film_id=?";
