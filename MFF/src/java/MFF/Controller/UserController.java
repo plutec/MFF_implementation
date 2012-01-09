@@ -21,7 +21,6 @@ public class UserController implements ControllerInterface {
 		model=new RSManagement();
 	}
 	
-	@Override
 	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("loginRegisterForms")) {
 			return this.showLoginRegisterForms();

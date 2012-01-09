@@ -17,7 +17,6 @@ public class RatingController implements ControllerInterface {
 	public RatingController() {
 		model=new RSManagement();
 	}
-	@Override
 	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("rate")) {
 			return this.rate(parameters);

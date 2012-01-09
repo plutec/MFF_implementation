@@ -5,12 +5,14 @@ $(document).ready(function() {
 		var title = $(this).data("title");
 		var year = $(this).data("year");
 		var aObj = $(this);
+		//$.ajaxSetup({'beforeSend':function(xhr) { xhr.setRequestHeader("Referer", "localhost")}});
+		//xhr.setRequestHeader('X-Alt-Referer')
 		$.ajax({
 			dataType: "jsonp",
 			data: "",
 			url: "http://www.imdbapi.com/?t=" + title + "&y=" + year,
 			success: function(json){
-				$(aObj).css("background-image", "url(" + json.Poster + ")");
+				$(aObj).css("background-image", "url('" + json.Poster + "')");
 			}
 		});
 	});

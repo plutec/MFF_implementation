@@ -21,10 +21,11 @@ public class IndexController implements ControllerInterface {
 	public IndexController() {
 		model=new RSManagement();
 	}
-	@Override
 	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("index")) {
 			return this.index(parameters);
+		} else if (action.equals("test")) {
+			return this.test(parameters);
 		}
 		return null;
 		
@@ -45,5 +46,21 @@ public class IndexController implements ControllerInterface {
 		toRet.put("address", "View_FrontPage.jsp");
 		return toRet;
 		
+	}
+	protected HashMap<String, Object> test(HashMap<String, Object> parameters) {
+		HashMap<String, Object> toRet=new HashMap<String, Object>();
+		toRet.put("address", "test.jsp");
+		//int max=10; //Máximo de películas a devolver
+		//ArrayList<Film> films=model.getBestRatedFilms(max);
+		//toRet.put("films", films);
+		//Recomendaciones si el usuario está logueado
+		//if (parameters.containsKey("sessionUserID"))
+		//    toRet.put("recommendations", model.getRecommendations(new User((String) parameters.get("sessionUserID"),null,null)));
+		//Indicamos el título
+		//toRet.put("title", "MFF :: Inicio");
+		//Indicamos la vista
+		//toRet.put("address", "View_FrontPage.jsp");
+		return toRet;
+
 	}
 }

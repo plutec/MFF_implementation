@@ -96,7 +96,7 @@ public class DAOFilm {
 	}
 	public Film getFilm(int id) {
 		try {
-			String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND id=?";
+			String sql = "SELECT id, year, title, AVG(rate) avgrate FROM film, ratings WHERE film.id=ratings.film_id AND id=? GROUP BY id";
 			PreparedStatement query = connection.prepareStatement(sql);
 			query.setInt(1, id);
 			ResultSet rs = query.executeQuery();
@@ -108,13 +108,35 @@ public class DAOFilm {
 				for(int i=1; i<=columns; i++)
 					row.put(md.getColumnName(i),rs.getObject(i));
 			}
+			if (row.isEmpty())
+			    return getFilmNoGroupBy(id);
 			float avgrate;
-			if (row.get("avgrate") == null)
-				avgrate = 0;
-			else
+			if (row.get("avgrate") == null) {
+				avgrate=0;
+			} else
 				avgrate = ((BigDecimal)row.get("avgrate")).floatValue();
 			//Creamos el objeto película para devolverlo
 			return new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), avgrate);
+		} catch (SQLException ex) {
+			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
+		}
+		return null;
+	}
+	private Film getFilmNoGroupBy(int id) {
+		try {
+			String sql = "SELECT id, year, title FROM film WHERE id=?";
+			PreparedStatement query = connection.prepareStatement(sql);
+			query.setInt(1, id);
+			ResultSet rs = query.executeQuery();
+			ResultSetMetaData md = rs.getMetaData();
+			int columns = md.getColumnCount();
+			HashMap row = new HashMap();
+			while (rs.next()) { //En este caso sólo debe haber 1
+				//results.add(row);
+				for(int i=1; i<=columns; i++)
+					row.put(md.getColumnName(i),rs.getObject(i));
+			}
+			return new Film((Integer)row.get("id"), (String)row.get("title"), (Integer)row.get("year"), 0);
 		} catch (SQLException ex) {
 			Logger.getLogger(DAOFilm.class.getName()).log(Level.SEVERE, null, ex);
 		}

@@ -18,7 +18,6 @@ public class FilmController implements ControllerInterface{
 		model=new RSManagement();
 	}
 	
-	@Override
 	public HashMap<String, Object> call(String action, HashMap parameters) {
 		if (action.equals("search")) {
 			return this.searchFilm(parameters);
