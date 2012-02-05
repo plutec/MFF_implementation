@@ -47,7 +47,7 @@ public class RatingController implements ControllerInterface {
 		int max=10; //Máximo de películas a devolver
 		ArrayList<Film> films=model.getBestRatedFilms(max);
 		toRet.put("films", films);
-		toRet.put("address", "bestRated.jsp"); //TODO es posible que haya que cambiar el nombre de la vista
+		toRet.put("address", "bestRated.jsp");
 		return toRet;
 	}
 }

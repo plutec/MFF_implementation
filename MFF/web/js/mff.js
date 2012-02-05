@@ -1,3 +1,6 @@
+var isLoading=false;
+var isDirty=false;
+
 $(document).ready(function() {
 	
 	// Carga de imágenes desde la API de IMDB
@@ -41,24 +44,44 @@ $(document).ready(function() {
 	});
 	
 	$('#searchFilmsInput').keyup(function() {
-		$.ajax({
-			url: "index?c=Film&a=searchFilmsAdmin&search=" + $('#searchFilmsInput').val(),
+	    isDirty=true;
+	    reloadSearch();
+	});
+	function reloadSearch() {
+	    if (!isLoading) {
+		var q=$('#searchFilmsInput').val();
+		if (q.length>=3) {
+		    isLoading=true;
+		    $.ajax({
+			url: "index?c=Film&a=searchFilmsAdmin&search=" + q,
 			success: function(data) {
-				$('#searchResults').html(data);
-				$('#searchResults').css("visibility", "visible");
-				$('.filmResultsItem').click(function() {
-					var id = $(this).data("id");
-					var title = $(this).data("title");
-					var year = $(this).data("year");
-					$(this).parent().css("visibility", "hidden");
-					$('#manageFilmsSubForm').css("visibility", "visible");
-					$('.field_id').val(id);
-					$('.field_title').val(title);
-					$('.field_year').val(year);
+			    $('#searchResults').html(data);
+			    $('#searchResults').css("visibility", "visible");
+			    $('.filmResultsItem').click(function() {
+				var id = $(this).data("id");
+				var title = $(this).data("title");
+				var year = $(this).data("year");
+				$(this).parent().css("visibility", "hidden");
+				$('#manageFilmsSubForm').css("visibility", "visible");
+				$('.field_id').val(id);
+				$('.field_title').val(title);
+				$('.field_year').val(year);
 				});
 			}
-		})
-	});
+		    })
+		    setTimeout(function() {
+			isLoading=false;
+			if (isDirty) {
+			    isDirty=false;
+			    reloadSearch();
+			}
+		    },1000);
+		} else {
+		    $('#searchResults').css("visibility", "hidden");
+		}
+	    }
+	}
+
 	
 	$('#searchResults').focusout(function() {
 		$('#searchResults').css("visibility", "hidden");

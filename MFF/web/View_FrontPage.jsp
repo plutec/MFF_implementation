@@ -30,7 +30,7 @@
 				<h1>Por tus valoraciones, seguramente te gusten estas películas:</h1>
 				<div class="mostRatedFilms">
 	<%
-				for (int i=0; i<recommendations.size(); i++) {
+				for (int i=0;i<recommendations.size() && i<10; i++) {
 					int id = ((Film)recommendations.get(i)).getId();
 					String title = ((Film)recommendations.get(i)).getTitle();
 					int year = ((Film)recommendations.get(i)).getYear();

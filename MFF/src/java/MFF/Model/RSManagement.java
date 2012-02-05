@@ -116,7 +116,7 @@ public class RSManagement {
 		//Ya tenemos las películas valoradas, ahora cargamos las vecinas de todas ellas
 		DAOSimilarity dS = new DAOSimilarity();
 		ArrayList<Similarity> sim = new ArrayList<Similarity>();
-		Iterator itr = ratedFilms.values().iterator();
+		Iterator itr = ratedFilms.keySet().iterator();
 		while (itr.hasNext()) {
 			
 			sim.addAll(dS.getNN(new Film((Integer) itr.next(), null, 0)));
